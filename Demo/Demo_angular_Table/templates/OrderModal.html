@@ -1,0 +1,110 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h3 class="modal-title align">Order Details</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+
+            <!-- 					Event ID -->
+            <div class="form-group ">
+                <label class="col-sm-3 control-label" for="eventID"><span class="require">* </span>Receiver:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="eventID" ng-model="orderDetails.receiver.fullName" readonly/>
+                </div>
+            </div>
+
+            <!-- 					Event Name -->
+            <div class="form-group">
+                <label class="col-sm-3 control-label  text-left" for="eventName"><span class="require">* </span>Event Name:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="eventName" ng-model="Data.eventName" placeholder="Enter Event Name" required>
+                </div>
+            </div>
+
+            <!-- 					Event Category -->
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="eventCategory"><span class="require">* </span>Event Category:</label>
+                <div class="col-md-8">
+                    <select ng-model="Data.eventCategory" name="eventCategory" class="form-control">
+								<option value="Fresher Program">Fresher Program</option>
+								<option value="Internship Program">Internship Program</option>
+								<option value="Job Fair">Job Fair</option>
+								<option value="Career Advice & Office Tour">Career Advice & Office Tour</option>
+								<option value="Alumni Sharing">Alumni Sharing</option>
+								<option value="Technology Day">Technology Day</option>
+								<option value="Open Day">Open Day</option>
+								<option value="Seminar">Seminar</option>
+								<option value="Mock Interview">Mock Interview</option>
+								<option value="Other">Other</option>
+							</select>
+                </div>
+            </div>
+
+            <!-- 					Event Location -->
+            <div class="form-group">
+                <label class="col-sm-3 control-label text-left" for="eventLocation"><span class="require">* </span>Receiver:</label>
+                <div ng-init="Load()" class="col-md-8">
+                    <select ng-model="Data.locationPK.locationID" class="form-control">
+								<option ng-repeat="location in list" ng-value='{{location.locationID}}'>{{location.locationName}}</option>
+							</select>
+                </div>
+            </div>
+
+            <!-- 					Event Address -->
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="eventAddress"><span class="require">* </span>Event Address:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="eventAddress" ng-model="Data.eventAddress" required placeholder="Enter Event Address">
+                </div>
+            </div>
+
+            <!-- 					Event Details -->
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="eventDetail"><span class="require">* </span>Event Details:</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="10" cols="50" name="eventDetail" ng-model="Data.eventDetail"></textarea>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="startDate"><span class="require">* </span>Event Start Date:</label>
+                <div class="col-md-8">
+                    <p class="input-group col-sm-4">
+                        <input type="text" class="form-control" uib-datepicker-popup={{format}} ng-model="Data.startDate" ng-value="dateOptions.minDate" is-open="popUpStartDate.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+											<button type="button" class="btn btn-default" ng-click="startDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+										</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="startDate"><span class="require">* </span>Event End Date:</label>
+                <div class="col-md-8">
+                    <p class="input-group col-sm-4">
+                        <input type="text" class="form-control" uib-datepicker-popup={{format}} ng-model="Data.endDate" is-open="popUpEndDate.opened" datepicker-options="dateOptions1" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+											<button type="button" class="btn btn-default" ng-click="endDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+										</span>
+                    </p>
+                </div>
+            </div>
+            <!-- <div class="form-group">
+						<label class="col-sm-3 control-label" for="eventImage"><span class="require">* </span>Event Image:</label>
+						<div class="col-md-7">
+
+							<form method="POST" action="uploadFile" enctype="multipart/form-data">
+								<input type="file"  name="file" id="file" accept=".jpg" ng-model="Data.eventImage">
+								<br>
+								<input type="button" class="btn btn-danger" value="Upload" ng-click="uploadFile()"> Press here to upload!
+							</form>
+						</div>
+					</div> -->
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="Save()">SAVE</button>
+        <button class="btn btn-warning" type="button" data-dismiss="modal" ng-click="Cancel()">CANCEL</button>
+    </div>
+</div>
