@@ -7,9 +7,10 @@
 
             <!-- 					Event ID -->
             <div class="form-group ">
-                <label class="col-sm-3 control-label" for="eventID"><span class="require">* </span>Receiver:</label>
+                <label class="col-sm-3 control-label" for="eventID"><span class="require">* </span>Sender: </label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" name="eventID" ng-model="orderDetails.receiver.fullName" readonly/>
+                    
+                    <input type="text" class="form-control" name="orderID" ng-model="orderDetails[index].sender.fullName" readonly/>
                 </div>
             </div>
 

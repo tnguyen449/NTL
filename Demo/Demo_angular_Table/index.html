@@ -31,6 +31,7 @@
             <table class=" table table-condensed table-stripped">
                 <thead class="bg-primary">
                     <tr>
+                        <td>#</td>
                         <td><strong>Sender</strong></td>
                         <td><strong>Phone</strong></td>
                         <td class="text-center"><strong>Destination</strong></td>
@@ -42,13 +43,14 @@
                 </thead>
                 <tbody ng-repeat="order in orders" class="align-center">
                     <tr>
+                        <td>{{$index}}</td>
                         <td>{{order.sender.fullName}}</td>
                         <td>{{order.sender.phone}}</td>
                         <td class="text-center">{{order.receiver.address}}</td>
                         <td class="text-justify">{{order.orderID}}</td>
                         <td>$900</td>
                         <td class="text-right ">{{order.sentDate}}</td>
-                        <td class="text-center"><a ng-click="ShowOrderDetail()" class="btn btn-md btn-info align-center">Details</a></td>
+                        <td class="text-center"><a ng-click="ShowOrderDetail($index)" class="btn btn-md btn-info align-center">Details</a></td>
                     </tr>
 
                 </tbody>
