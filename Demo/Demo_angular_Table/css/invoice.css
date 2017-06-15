@@ -28,3 +28,9 @@
     width: 173.5px;
     height: 60px
 }
+
+.headerstyle {
+    background-color: red;
+    color: white;
+    border-color: #ddd;
+}

@@ -11,21 +11,19 @@ app.controller('MainController', ['$scope', '$http', '$uibModal', '$uibModalStac
     //Using $http service to get data from JSON Object.
     $http.get("./json/order.json").then(function(response) {
         $scope.orders = response.data;
-        console.log("Order from Main Controller: " + $scope.orders);
         $scope.ShowOrderDetail = function(index) {
             $uibModal.open({
                 anmimation: true,
                 templateUrl: 'templates/OrderModal.html', //|| "templates/eventRegistrationForm.html"
                 controller: 'ShowOrderController',
-                size: 'md',
-                resolve: 
-                    {
+                size: 'lg',
+                resolve: {
                     params: function() {
                         return $scope.orders;
                     },
-                        index: function(){
-                            return index;
-                        }
+                    index: function() {
+                        return index;
+                    }
                 },
                 close: function() {
                     $uibModalStack.dismiss();
@@ -35,16 +33,15 @@ app.controller('MainController', ['$scope', '$http', '$uibModal', '$uibModalStac
     });
 }]);
 
-app.controller("ShowOrderController", ['$scope','$uibModalInstance', 'params', 'index', function($scope, $uibModalInstance, params, index) {
+app.controller("ShowOrderController", ['$scope', '$uibModalInstance', 'params', 'index', function($scope, $uibModalInstance, params, index) {
     $scope.orderDetails = {};
     $scope.orderDetails = params;
     $scope.index = index;
     $scope.Cancel = function() {
         $uibModalInstance.dismiss();
     };
-    console.log($scope.orderDetails[1].receiver);
-    $scope.Save = function() {
-        console.log("Save Ok.");
+    $scope.Print = function() {
+
     };
 }]);
 
@@ -66,5 +63,20 @@ app.factory('modalFactory', function($uibModal, $uibModalStack) {
                 }
             });
         }
+    };
+});
+
+app.filter('numberFixedLen', function() {
+    return function(n, len) {
+        var num = parseInt(n, 10);
+        len = parseInt(len, 10);
+        if (isNaN(num) || isNaN(len)) {
+            return n;
+        }
+        num = '' + num;
+        while (num.length < len) {
+            num = '0' + num;
+        }
+        return num;
     };
 });
