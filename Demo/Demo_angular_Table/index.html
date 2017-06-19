@@ -32,13 +32,13 @@
                 <thead style="background:#ff3333; color: white">
                     <tr>
                         <td>#</td>
-                        <td><strong>Order Number</strong></td>
-                        <td><strong>Sender</strong></td>
-                        <td><strong>Phone</strong></td>
-                        <td><strong>Sent Date</strong></td>
-                        <td><strong>Destination</strong></td>
-                        <td><strong>Total</strong></td>
-                        <td><strong>Status</strong></td>
+                        <td class="text-center"><strong>Order Number</strong></td>
+                        <td class="text-center"><strong>Sender</strong></td>
+                        <td class="text-center"><strong>Phone</strong></td>
+                        <td class="text-center"><strong>Sent Date</strong></td>
+                        <td class="text-center"><strong>Destination</strong></td>
+                        <td class="text-center"><strong>Total</strong></td>
+                        <td class="text-center"><strong>Status</strong></td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -46,17 +46,26 @@
                 <tbody ng-repeat="order in orders" class="align-center">
                     <tr>
                         <td>{{$index}}</td>
-                        <td class="text-center">{{order.orderID}}</td>
+                        <td class="text-center"><a ng-click="ShowOrderDetail($index)">{{order.orderID}}</a></td>
                         <td>{{order.sender.fullName}}</td>
                         <td>{{order.sender.phone}}</td>
                         <td class="text-left ">{{order.sentDate}}</td>
                         <td>{{order.receiver.address}}</td>
                         <td class="text-center">$900</td>
-                        <td class="text-center">{{order.status}}</td>
-                        <td class="text-center"><a ng-click="ShowOrderDetail($index)" class="btn btn-md btn-primary align-center">Change Status</a></td>
+                        <td class="text-center"><span class="label label-success">{{order.status}}</span></td>
+                        <td class="text-center">
+                            <!-- Single button -->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Change Status <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li style="cursor:context-menu"><a ng-click="ShowOrderDetail($index)" ng-repeat="stt in status">{{stt.type}}</a></li>
+                                </ul>
+                            </div>
+                        </td>
                         <td class="text-center"><a ng-click="ShowOrderDetail($index)" class="btn btn-md btn-info align-center">Details</a></td>
                     </tr>
-
                 </tbody>
             </table>
             <hr>

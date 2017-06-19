@@ -34,3 +34,7 @@
     color: white;
     border-color: #ddd;
 }
+
+.listhover.a:hover {
+    background: red;
+}

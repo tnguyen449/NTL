@@ -8,6 +8,16 @@ var app = angular.module("myApp", ["angular.filter", "ui.bootstrap"]);
  */
 app.controller('MainController', ['$scope', '$http', '$uibModal', '$uibModalStack', function($scope, $http, $uibModal, $uibModalStack) {
     $scope.orders = [];
+    $scope.status = [{
+            "type": "In-stock"
+        },
+        {
+            "type": "In-progress"
+        },
+        {
+            "type": "Done"
+        }
+    ];
     //Using $http service to get data from JSON Object.
     $http.get("./json/order.json").then(function(response) {
         $scope.orders = response.data;
