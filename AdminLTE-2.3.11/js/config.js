@@ -1,0 +1,1 @@
+angular.module("Configurations",[]).constant('backendURL', 'http://localhost:8080/NTLBE');
