@@ -18,6 +18,16 @@ app.controller('MainController', ['$scope', '$http', '$uibModal', '$uibModalStac
             "type": "Done"
         }
     ];
+
+    $scope.CreateOrder = function() {
+        $uibModal.open({
+            anmimation: true,
+            templateUrl: 'templates/CreateOrderModal.html',
+            controller: 'CreateOrderController',
+            size: 'lg'
+        });
+    };
+
     //Using $http service to get data from JSON Object.
     $http.get("./json/order.json").then(function(response) {
         $scope.orders = response.data;
@@ -53,6 +63,10 @@ app.controller("ShowOrderController", ['$scope', '$uibModalInstance', 'params', 
     $scope.Print = function() {
 
     };
+}]);
+
+app.controller('CreateOrderController', ['$scope', '$uibModal', '$uibModalStack', function($scope, $uibModal, $uibModalStack) {
+
 }]);
 
 app.factory('modalFactory', function($uibModal, $uibModalStack) {

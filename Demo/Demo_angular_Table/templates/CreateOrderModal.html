@@ -1,0 +1,43 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <div class="text-center">
+            <img src="resource/images/ntl_logo.png" class="pull-left" id="logo"></img>
+            <h2>Order Form</h2>
+        </div>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-3"><span class="require">* </span>Send Name</label>
+                <div class="col-sm-7">
+                    <input type="text" onlyCharacters class="form-control fName" ng-model="data.lastName" name="lastName" id="locationName" placeholder="Nguyen Van" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="locationName"><span class="require">* </span>First Name:</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" ng-model="data.firstName" name="firstName" id="locationName" placeholder="Sinh">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="locationName"><span class="require">* </span>Email:</label>
+                <div class="col-sm-7">
+                    <input type="email" validateEmail class="form-control" ng-model="data.email" name="email" id="locationName" placeholder="sinh@gmail.com">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="locationName"><span class="require">* </span>Phone:</label>
+                <div class="col-sm-7">
+                    <input type="text" only-digits class="form-control" ng-model="data.phone" name="phone" id="locationName" placeholder="0912345678">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="Print()">PRINT</button>
+        <button class="btn btn-warning" type="button" data-dismiss="modal" ng-click="Cancel()">CLOSE</button>
+    </div>
+</div>
