@@ -1,0 +1,164 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h2 class="modal-title text-center bg-primary">VẬN ĐƠN</h2>
+        <hr>
+        <h4 class="modal-title text-left">PHẦN THÔNG TIN HÀNG HÓA</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <fieldset disabled>
+                    <label class="control-label col-sm-3">Mã Đơn Hàng:</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" ng-model="data.firstName" id="locationName" placeholder=" Nguyen Van A" value="SG111025" readonly>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group col-md-6 pull-right">
+                    <label class="control-label col-sm-4" style="right: 55px"><span class="require">* </span>Gửi Đến:</label>
+                    <div class="col-sm-6" style="right: 78px">
+                        <select ng-model="Data.sendFrom" class="form-control">
+                                <option value="" disabled selected>Chọn Nơi Đến</option>
+								 <optgroup label="Sài Gòn">
+                                    <option value="Quận 1">Quận 1</option>
+                                    <option value="Quận 3">Quận 3</option>
+                                    <option value="Quận 5">Quận 5</option>
+                                    <option value="Quận Tân Bình">Quận Tân Bình</option>
+                                </optgroup>
+								<option value="Nha Trang">Nha Trang</option>
+								<option value="Cam Ranh">Cam Ranh</option>
+								<option value="Khánh Hòa">Khánh Hòa</option>
+								<option value="Ninh Hòa">Ninh Hòa</option>
+							</select>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 pull-right">
+                    <label class="control-label col-sm-3" style="left: 60px"><span class="require">* </span>Gửi Từ:</label>
+                    <div class="col-sm-6" style="left: 60px">
+                        <select ng-model="Data.sendTo" class="form-control">
+                                <option value="" disabled selected>Chọn Nơi Gửi</option>
+								 <optgroup label="Sài Gòn">
+                                    <option value="Quận 1">Quận 1</option>
+                                    <option value="Quận 3">Quận 3</option>
+                                    <option value="Quận 5">Quận 5</option>
+                                    <option value="Quận Tân Bình">Quận Tân Bình</option>
+                                </optgroup>
+								<option value="Nha Trang">Nha Trang</option>
+								<option value="Cam Ranh">Cam Ranh</option>
+								<option value="Khánh Hòa">Khánh Hòa</option>
+								<option value="Ninh Hòa">Ninh Hòa</option>
+							</select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3"><span class="require">* </span>Ngày Gửi:</label>
+                <div class="col-sm-7">
+                    <p class="input-group col-sm-4">
+                        <input type="text" class="form-control" uib-datepicker-popup={{format}} ng-model="Data.startDate" ng-value="dateOptions.minDate" is-open="popUpStartDate.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+							<button type="button" class="btn btn-default" ng-click="startDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+						</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3"><span class="require">* </span>Phương Thức Giao Nhận:</label>
+                <div class="col-sm-7">
+                    <div class="col-sm-12">
+                        <div class="col-sm-6">
+                            <input type="checkbox" /> Chuyển Phát Thường
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="checkbox" /> Chuyển Phát Nhanh
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-6">
+                            <input type="checkbox" /> Chuyển Phát Tận Nơi
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="checkbox" /> Chuyển Phát Tận Nơi Gấp
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-12"><h3 class="text-center"><strong>Chi Tiết Đơn Vận</strong></h3></label>
+                <div class="panel panel-default">
+                    <div class="panel-heading col-md-3 pull-right">
+                        <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="AddItem(products)"><span class="glyphicon glyphicon-plus-sign"></span> THÊM</button>
+                        <button class="btn btn-danger" type="button " data-dismiss="modal " ng-click="RemoveItem()"><span class="glyphicon glyphicon-minus-sign "></span> XÓA</button>
+                    </div>
+                    <div class="panel-body col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-condensed col-md-12">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="checkbox" ng-model="selectedAll" ng-click="SelectAll()" />
+                                            </div>
+                                        </td>
+                                        <td><strong>Số Lượng</strong></td>
+                                        <td><strong>Loại Hàng</strong></td>
+                                        <td class="text-center "><strong>Ghi Chú</strong></td>
+                                        <td class="text-right pull-right "><strong>Thành Tiền</strong></td>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="product in products" class="align-center">
+                                    <tr>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="checkbox" ng-model="product.selected" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" ng-model="product.quantity" id="locationName">
+                                        </td>
+
+                                        <td>
+                                            <select ng-model="product.type" name="sendTo" class="form-control">
+                                                <option value="" disabled selected>----- Chọn Mặt Hàng -----</option>
+                                                <option value="Thùng">Thùng</option>
+                                                <option value="Xe Máy">Xe Máy</option>
+                                                <option value="Kilogram">Kilogram</option>
+                                                <option value="Cây">Cây</option>
+                                                <option value="Bao">Bao</option>
+                                                <option value="Kiện">Kiện</option>
+                                                <option value="Gói">Gói</option>
+                                            </select>
+                                        </td>
+
+                                        <td class="text-center">
+                                            <input type="text" class="form-control" ng-model="product.description " id="locationName " placeholder="Thêm ghi chú">
+                                        </td>
+
+                                        <td class="text-right ">$900</td>
+                                    </tr>
+
+                                </tbody>
+                                <tr>
+                                    <td class="highrow "></td>
+                                    <td class="highrow "></td>
+                                    <td class="highrow text-center "><strong>Tổng Cộng:</strong></td>
+                                    <td class="highrow text-right ">$958.00</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer ">
+        <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="Previous()"><span class="glyphicon glyphicon-chevron-left"></span> QUAY VỀ</button>
+        <button class="btn btn-success " type="button " data-dismiss="modal" ng-click="Confirm()"><span class="glyphicon glyphicon-ok"></span> XÁC NHẬN</button>
+        <button class="btn btn-danger" type="button" data-dismiss="modal" ng-click="Cancel()"><span class="glyphicon glyphicon-remove"></span> HỦY</button>
+    </div>
+</div>

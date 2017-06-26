@@ -1,0 +1,42 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h2 class="modal-title text-center bg-primary">VẬN ĐƠN</h2>
+        <hr>
+        <h4 class="modal-title text-left">PHẦN THÔNG TIN NGƯỜI GỬI</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="locationName"><span class="require">* </span>Họ Tên:</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" ng-model="receiver.firstName" placeholder=" Nguyen Van A">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3"><span class="require">* </span>Địa chỉ:</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" ng-model="receiver.address" placeholder="123 ABC St, Ward 4, District 4">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3"><span class="require">* </span>Số Điện Thoại:</label>
+                <div class="col-sm-7">
+                    <input type="text" only-digits class="form-control" ng-model="receiver.phone" placeholder="0912345678">
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                <label class="control-label col-sm-3" for="status"><span>*</span>First Name:</label>
+                <div class="col-sm-5 radio">
+                    <input type="radio" name="status" ng-model="locationData.status" ng-value="1"><span>Active</span>
+                    <input type="radio" id="empty" name="status" ng-model="locationData.status" ng-value="0"><span id="inactive">Inactive</span></br>
+                </div>
+            </div> -->
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" data-dismiss="modal" ng-click="MoveToSecondForm()">TIẾP THEO <span class="glyphicon glyphicon-chevron-right"></span></button>
+        <button class="btn btn-danger" type="button" data-dismiss="modal" ng-click="Cancel()"><span class="glyphicon glyphicon-remove"></span> HỦY</button>
+    </div>
+</div>
