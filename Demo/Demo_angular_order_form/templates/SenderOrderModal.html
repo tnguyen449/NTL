@@ -12,28 +12,28 @@
             <div class="form-group">
                 <label class="control-label col-sm-3" for="locationName"><span class="require">* </span>Họ Tên:</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" ng-model="sender.fullName" placeholder=" Nguyen Van B">
+                    <input type="text" class="form-control" ng-model="senderCtrl.sender.fullName" placeholder=" Nguyen Van B">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-3" for="locationName"><span class="require">* </span>Địa chỉ:</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" ng-model="sender.address" placeholder="123 ABC St, Ward 4, District 4">
+                    <input type="text" class="form-control" ng-model="senderCtrl.sender.address" placeholder="123 ABC St, Ward 4, District 4">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-3" for="locationName"><span class="require">* </span>Số Điện Thoại:</label>
                 <div class="col-sm-7">
-                    <input type="text" only-digits class="form-control" ng-model="sender.phone" placeholder="0912345678">
+                    <input type="text" only-digits class="form-control" ng-model="senderCtrl.sender.phone" placeholder="0912345678">
                 </div>
             </div>
         </form>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="Previous()"><span class="glyphicon glyphicon-chevron-left"></span> QUAY VỀ</button>
-        <button class="btn btn-success" type="button" data-dismiss="modal" ng-click="MoveToThirdModal()">TIẾP THEO <span class="glyphicon glyphicon-chevron-right"></span></button>
-        <button class="btn btn-danger" type="button" data-dismiss="modal" ng-click="Cancel()"><span class="glyphicon glyphicon-remove"></span> HỦY</button>
+        <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="senderCtrl.Previous()"><span class="glyphicon glyphicon-chevron-left"></span> QUAY VỀ</button>
+        <button class="btn btn-success" type="button" data-dismiss="modal" ng-click="senderCtrl.MoveToThirdModal()">TIẾP THEO <span class="glyphicon glyphicon-chevron-right"></span></button>
+        <button class="btn btn-danger" type="button" data-dismiss="modal" ng-click="senderCtrl.Cancel()"><span class="glyphicon glyphicon-remove"></span> HỦY</button>
     </div>
 </div>

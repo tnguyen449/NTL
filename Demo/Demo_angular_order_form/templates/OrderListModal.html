@@ -90,9 +90,9 @@
             <div class="form-group">
                 <label class="control-label col-md-12"><h3 class="text-center"><strong>Chi Tiết Đơn Vận</strong></h3></label>
                 <div class="panel panel-default">
-                    <div class="panel-heading col-md-3 pull-right">
-                        <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="AddItem(products)"><span class="glyphicon glyphicon-plus-sign"></span> THÊM</button>
-                        <button class="btn btn-danger" type="button " data-dismiss="modal " ng-click="RemoveItem()"><span class="glyphicon glyphicon-minus-sign "></span> XÓA</button>
+                    <div class="col-md-3 pull-right">
+                        <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="createCtrl.AddItem(products)"><span class="glyphicon glyphicon-plus-sign"></span> THÊM</button>
+                        <button class="btn btn-danger" type="button " data-dismiss="modal " ng-click="createCtrl.RemoveItem()"><span class="glyphicon glyphicon-minus-sign "></span> XÓA</button>
                     </div>
                     <div class="panel-body col-md-12">
                         <div class="table-responsive">
@@ -101,7 +101,7 @@
                                     <tr>
                                         <td>
                                             <div class="input-group">
-                                                <input type="checkbox" ng-model="selectedAll" ng-click="SelectAll()" />
+                                                <input type="checkbox" ng-model="selectedAll" ng-click="createCtrl.SelectAll()" />
                                             </div>
                                         </td>
                                         <td><strong>Số Lượng</strong></td>
@@ -110,7 +110,7 @@
                                         <td class="text-right pull-right "><strong>Thành Tiền</strong></td>
                                     </tr>
                                 </thead>
-                                <tbody ng-repeat="product in products" class="align-center">
+                                <tbody ng-repeat="product in createCtrl.products" class="align-center">
                                     <tr>
                                         <td>
                                             <div class="input-group">
@@ -143,10 +143,10 @@
 
                                 </tbody>
                                 <tr>
-                                    <td class="highrow "></td>
-                                    <td class="highrow "></td>
-                                    <td class="highrow text-center "><strong>Tổng Cộng:</strong></td>
-                                    <td class="highrow text-right ">$958.00</td>
+                                    <td class="highrow"></td>
+                                    <td class="highrow"></td>
+                                    <td class="highrow text-center col-md-3"><strong>Tổng Cộng:</strong></td>
+                                    <td class="highrow text-right col-md-3 pull-right">$958.00</td>
                                 </tr>
                             </table>
                         </div>
@@ -157,8 +157,8 @@
         </form>
     </div>
     <div class="modal-footer ">
-        <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="Previous()"><span class="glyphicon glyphicon-chevron-left"></span> QUAY VỀ</button>
-        <button class="btn btn-success " type="button " data-dismiss="modal" ng-click="Confirm()"><span class="glyphicon glyphicon-ok"></span> XÁC NHẬN</button>
-        <button class="btn btn-danger" type="button" data-dismiss="modal" ng-click="Cancel()"><span class="glyphicon glyphicon-remove"></span> HỦY</button>
+        <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="createCtrl.Previous()"><span class="glyphicon glyphicon-chevron-left"></span> QUAY VỀ</button>
+        <button class="btn btn-success " type="button " data-dismiss="modal" ng-click="createCtrl.Confirm()"><span class="glyphicon glyphicon-ok"></span> XÁC NHẬN</button>
+        <button class="btn btn-danger" type="button" data-dismiss="modal" ng-click="createCtrl.Cancel()"><span class="glyphicon glyphicon-remove"></span> HỦY</button>
     </div>
 </div>

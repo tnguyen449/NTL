@@ -9,21 +9,21 @@
             <div class="form-group">
                 <label class="control-label col-sm-3" for="locationName"><span class="require">* </span>Họ Tên:</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" ng-model="receiver.firstName" placeholder=" Nguyen Van A">
+                    <input type="text" class="form-control" ng-model="receiverCtrl.receiver.firstName" placeholder=" Nguyen Van A">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-3"><span class="require">* </span>Địa chỉ:</label>
                 <div class="col-sm-7">
-                    <input type="text" class="form-control" ng-model="receiver.address" placeholder="123 ABC St, Ward 4, District 4">
+                    <input type="text" class="form-control" ng-model="receiverCtrl.receiver.address" placeholder="123 ABC St, Ward 4, District 4">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-3"><span class="require">* </span>Số Điện Thoại:</label>
                 <div class="col-sm-7">
-                    <input type="text" only-digits class="form-control" ng-model="receiver.phone" placeholder="0912345678">
+                    <input type="text" only-digits class="form-control" ng-model="receiverCtrl.receiver.phone" placeholder="0912345678">
                 </div>
             </div>
             <!-- <div class="form-group">
@@ -36,7 +36,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-success" type="button" data-dismiss="modal" ng-click="MoveToSecondForm()">TIẾP THEO <span class="glyphicon glyphicon-chevron-right"></span></button>
-        <button class="btn btn-danger" type="button" data-dismiss="modal" ng-click="Cancel()"><span class="glyphicon glyphicon-remove"></span> HỦY</button>
+        <button class="btn btn-success" type="button" data-dismiss="modal" ng-click="receiverCtrl.MoveToSecondForm()">TIẾP THEO <span class="glyphicon glyphicon-chevron-right"></span></button>
+        <button class="btn btn-danger" type="button" data-dismiss="modal" ng-click="receiverCtrl.Cancel()"><span class="glyphicon glyphicon-remove"></span> HỦY</button>
     </div>
 </div>

@@ -76,8 +76,53 @@ app.controller('CreateController', ['$uibModal', '$uibModalStack', '$uibModalIns
     var vm = this;
     var senderInfo = sender;
     var receiverInfo = receiver;
+    vm.products = [{
+        'quantity': "",
+        'type': "",
+        'description': ""
+    }];
     vm.Confirm = function() {
         console.log(senderInfo);
         console.log(receiverInfo);
+        vm.selectedAll = true;
+        var newList = [];
+        angular.forEach(vm.products, function(product) {
+            product.selected = vm.selectAll;
+            newList.push(product);
+        });
+        vm.products = newList;
+        $uibModalStack.dismissAll('cancel');
     };
+
+    vm.AddItem = function(product) {
+        vm.products.push({
+            'quantity': "",
+            'type': "",
+            'description': ""
+        });
+    };
+
+    //Remove items that are checked in checkbox.
+    vm.RemoveItem = function() {
+        var newProductList = [];
+        vm.selectedAll = false;
+        angular.forEach(vm.products, function(product) {
+            if (!product.selected) {
+                newProductList.push(product);
+            };
+        });
+        vm.products = newProductList;
+    };
+
+    //Select all items in checkbox
+    vm.SelectAll = function() {
+        if (!vm.selectedAll) {
+            vm.selectedAll = false;
+        } else {
+            vm.selectedAll = true;
+        };
+        angular.forEach(vm.products, function(product) {
+            product.selected = vm.selectedAll;
+        });
+    }
 }]);
