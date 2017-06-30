@@ -39,7 +39,7 @@ app.controller('FirstModalController', ['$uibModal', '$uibModalStack', '$uibModa
     };
 }]);
 
-app.controller('SecondModalController', ['$uibModal', '$uibModalStack', '$uibModalInstance', 'receiver', function($uibModal, $uibModalStack, $uibModalInstance, receiver) {
+app.controller('SecondModalController', ['$uibModal', '$uibModalStack', '$uibModalInstance', 'receiver', '$http', function($uibModal, $uibModalStack, $uibModalInstance, receiver, $http) {
     var vm = this;
     vm.sender = {};
     var receiverInfo = receiver;
@@ -50,6 +50,11 @@ app.controller('SecondModalController', ['$uibModal', '$uibModalStack', '$uibMod
         $uibModalStack.dismissAll('cancel');
     };
     vm.MoveToThirdModal = function() {
+        vm.test = [];
+        $http.get("./js/test.json").then(function(response) {
+            vm.test = response;
+            console.log(vm.test);
+        })
         vm.GetSender = function() {
             return vm.sender;
         };
@@ -58,7 +63,8 @@ app.controller('SecondModalController', ['$uibModal', '$uibModalStack', '$uibMod
             templateUrl: 'templates/OrderListModal.html',
             controller: 'CreateController',
             controllerAs: 'createCtrl',
-            size: 'lg',
+            // size: 'lg',
+            windowClass: 'app-modal-window',
             bindToController: true,
             resolve: {
                 sender: function() {
@@ -76,8 +82,59 @@ app.controller('CreateController', ['$uibModal', '$uibModalStack', '$uibModalIns
     var vm = this;
     var senderInfo = sender;
     var receiverInfo = receiver;
+    vm.products = [{
+        'quantity': "",
+        'type': "",
+        'description': ""
+    }];
     vm.Confirm = function() {
         console.log(senderInfo);
         console.log(receiverInfo);
+        vm.selectedAll = true;
+        var newList = [];
+        angular.forEach(vm.products, function(product) {
+            product.selected = vm.selectAll;
+            newList.push(product);
+        });
+        vm.products = newList;
+        $uibModalStack.dismissAll();
+    }
+    vm.Previous = function() {
+        $uibModalInstance.dismiss();
     };
+    vm.Cancel = function() {
+        $uibModalStack.dismissAll();
+    };
+
+    vm.AddItem = function(product) {
+        vm.products.push({
+            'quantity': "",
+            'type': "",
+            'description': ""
+        });
+    };
+
+    //Remove items that are checked in checkbox.
+    vm.RemoveItem = function() {
+        var newProductList = [];
+        vm.selectedAll = false;
+        angular.forEach(vm.products, function(product) {
+            if (!product.selected) {
+                newProductList.push(product);
+            };
+        });
+        vm.products = newProductList;
+    };
+
+    //Select all items in checkbox
+    vm.SelectAll = function() {
+        if (!vm.selectedAll) {
+            vm.selectedAll = false;
+        } else {
+            vm.selectedAll = true;
+        };
+        angular.forEach(vm.products, function(product) {
+            product.selected = vm.selectedAll;
+        });
+    }
 }]);

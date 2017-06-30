@@ -1,3 +1,7 @@
 .require {
     color: red;
 }
+
+.app-modal-window .modal-dialog {
+    width: 1024px;
+}

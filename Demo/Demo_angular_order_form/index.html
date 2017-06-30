@@ -8,15 +8,16 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <script src="libs/angular.min.js"></script>
+    <script src="libs/jquery-3.2.1.js"></script>
     <script src="libs/ui-bootstrap-tpls-2.5.0.min.js"></script>
     <script src="libs/bootstrap.min.js"></script>
-    <script src="js/new.js"></script>]
+    <script src="js/app.js"></script>
 </head>
 
 <body ng-app="app">
     <div class="container-fluid" ng-controller="MainController as mainCtrl">
         <div>
-            <button type="button" class="btn btn-md btn-primary" ng-click="mainCtrl.CreateOrder()"><span class="glyphicon glyphicon-plus"></span> TẠO ĐƠN VẬN</button>
+            <button type="button" class="btn btn-md btn-primary" ng-click="mainCtrl.CreateOrder()"><span class="glyphicon glyphicon-plus"></span><strong> TẠO ĐƠN VẬN</strong></button>
         </div>
     </div>
 </body>

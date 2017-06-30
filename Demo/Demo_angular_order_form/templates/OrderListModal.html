@@ -70,18 +70,18 @@
                 <div class="col-sm-7">
                     <div class="col-sm-12">
                         <div class="col-sm-6">
-                            <input type="checkbox" /> Chuyển Phát Thường
+                            <input type="radio" name="optradio" /> Chuyển Phát Thường
                         </div>
                         <div class="col-sm-6">
-                            <input type="checkbox" /> Chuyển Phát Nhanh
+                            <input type="radio" name="optradio" /> Chuyển Phát Nhanh
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="col-sm-6">
-                            <input type="checkbox" /> Chuyển Phát Tận Nơi
+                            <input type="radio" name="optradio" /> Chuyển Phát Tận Nơi
                         </div>
                         <div class="col-sm-6">
-                            <input type="checkbox" /> Chuyển Phát Tận Nơi Gấp
+                            <input type="radio" name="optradio" /> Chuyển Phát Tận Nơi Gấp
                         </div>
                     </div>
                 </div>
@@ -91,74 +91,79 @@
                 <label class="control-label col-md-12"><h3 class="text-center"><strong>Chi Tiết Đơn Vận</strong></h3></label>
                 <div class="panel panel-default">
                     <div class="col-md-3 pull-right">
-                        <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="createCtrl.AddItem(products)"><span class="glyphicon glyphicon-plus-sign"></span> THÊM</button>
-                        <button class="btn btn-danger" type="button " data-dismiss="modal " ng-click="createCtrl.RemoveItem()"><span class="glyphicon glyphicon-minus-sign "></span> XÓA</button>
+                        <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="createCtrl.AddItem(products)"><span class="glyphicon glyphicon-plus-sign"></span><strong> THÊM</strong></button>
+                        <button class="btn btn-danger" type="button " data-dismiss="modal " ng-click="createCtrl.RemoveItem()"><span class="glyphicon glyphicon-minus-sign "></span><strong> XÓA</strong></button>
                     </div>
-                    <div class="panel-body col-md-12">
+                    <div class="panel-body col-lg-12">
                         <div class="table-responsive">
-                            <table class="table table-condensed col-md-12">
+                            <table class="table">
                                 <thead>
                                     <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <input type="checkbox" ng-model="selectedAll" ng-click="createCtrl.SelectAll()" />
-                                            </div>
-                                        </td>
-                                        <td><strong>Số Lượng</strong></td>
-                                        <td><strong>Loại Hàng</strong></td>
-                                        <td class="text-center "><strong>Ghi Chú</strong></td>
-                                        <td class="text-right pull-right "><strong>Thành Tiền</strong></td>
+                                        <th class="col-xs-1 input-group">
+                                            <input type="checkbox" ng-model="createCtrl.selectedAll" ng-click="createCtrl.SelectAll()" />
+                                        </th>
+                                        <th><strong>Khối Lượng</strong></th>
+                                        <th><strong>Loại Hàng</strong></th>
+                                        <th><strong>Số Lượng</strong></th>
+                                        <th><strong>Đảm Bảo</strong></th>
+                                        <th><strong>Khai Giá</strong></th>
+                                        <th><strong>Ghi Chú</strong></th>
+                                        <th><strong>Thành Tiền</strong></th>
                                     </tr>
                                 </thead>
-                                <tbody ng-repeat="product in createCtrl.products" class="align-center">
+                                <tbody ng-repeat="product in createCtrl.products">
                                     <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <input type="checkbox" ng-model="product.selected" />
-                                            </div>
+                                        <td class="col-xs-1">
+                                            <input type="checkbox" ng-model="product.selected" />
                                         </td>
-                                        <td>
+                                        <td class="input-group">
                                             <input type="text" class="form-control" ng-model="product.quantity" id="locationName">
+                                            <span class="input-group-addon">kg</span>
                                         </td>
-
                                         <td>
-                                            <select ng-model="product.type" name="sendTo" class="form-control">
-                                                <option value="" disabled selected>----- Chọn Mặt Hàng -----</option>
-                                                <option value="Thùng">Thùng</option>
-                                                <option value="Xe Máy">Xe Máy</option>
-                                                <option value="Kilogram">Kilogram</option>
-                                                <option value="Cây">Cây</option>
-                                                <option value="Bao">Bao</option>
-                                                <option value="Kiện">Kiện</option>
-                                                <option value="Gói">Gói</option>
+                                            <select ng-model="product.type " name="sendTo " class="form-control">
+                                                <option value=" " disabled selected>----- Chọn Mặt Hàng -----</option>
+                                                <option value="Thùng ">Thùng</option>
+                                                <option value="Xe Máy ">Xe Máy</option>
+                                                <option value="Kilogram ">Kilogram</option>
+                                                <option value="Cây ">Cây</option>
+                                                <option value="Bao ">Bao</option>
+                                                <option value="Kiện ">Kiện</option>
+                                                <option value="Gói ">Gói</option>
                                             </select>
                                         </td>
-
-                                        <td class="text-center">
-                                            <input type="text" class="form-control" ng-model="product.description " id="locationName " placeholder="Thêm ghi chú">
+                                        <td class="col-xs-3">
+                                            <input type="text" class="form-control" ng-model="product.quantity" id="locationName">
                                         </td>
-
-                                        <td class="text-right ">$900</td>
+                                        <td>
+                                            <input type="checkbox" ng-model="product.selected" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" ng-model="product.description" id="locationName" placeholder="Khai giá (Nếu có)">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" ng-model="product.description" id="locationName" placeholder="Thêm ghi chú">
+                                        </td>
+                                        <td>$900</td>
                                     </tr>
 
                                 </tbody>
-                                <tr>
+                                <tr class="col-md-12">
                                     <td class="highrow"></td>
                                     <td class="highrow"></td>
                                     <td class="highrow text-center col-md-3"><strong>Tổng Cộng:</strong></td>
-                                    <td class="highrow text-right col-md-3 pull-right">$958.00</td>
+                                    <td class="highrow text-right col-md-3">$958.00</td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-
         </form>
     </div>
-    <div class="modal-footer ">
-        <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="createCtrl.Previous()"><span class="glyphicon glyphicon-chevron-left"></span> QUAY VỀ</button>
-        <button class="btn btn-success " type="button " data-dismiss="modal" ng-click="createCtrl.Confirm()"><span class="glyphicon glyphicon-ok"></span> XÁC NHẬN</button>
-        <button class="btn btn-danger" type="button" data-dismiss="modal" ng-click="createCtrl.Cancel()"><span class="glyphicon glyphicon-remove"></span> HỦY</button>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="createCtrl.Previous()"><span class="glyphicon glyphicon-chevron-left"></span><strong> QUAY VỀ</strong></button>
+        <button class="btn btn-success" type="button" data-dismiss="modal" ng-click="createCtrl.Confirm()"><span class="glyphicon glyphicon-ok"></span><strong> XÁC NHẬN</strong></button>
+        <button class="btn btn-danger" type="button" data-dismiss="modal" ng-click="createCtrl.Cancel()"><span class="glyphicon glyphicon-remove"></span><strong> HỦY</strong></button>
     </div>
 </div>
