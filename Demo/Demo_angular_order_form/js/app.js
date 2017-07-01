@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.bootstrap']);
+var app = angular.module('app', ['ui.bootstrap','angular.filter']);
 app.controller('MainController', ['$uibModal', '$uibModalStack', function($uibModal, $uibModalStack) {
     var vm = this;
     vm.CreateOrder = function() {
@@ -51,14 +51,10 @@ app.controller('SecondModalController', ['$uibModal', '$uibModalStack', '$uibMod
     };
     vm.MoveToThirdModal = function() {
         vm.test = [];
-        $http.get("./js/test.json").then(function(response) {
-            vm.test = response;
-            console.log(vm.test);
-        })
-        vm.GetSender = function() {
-            return vm.sender;
-        };
-        $uibModal.open({
+        $http.get('http://localhost:57363/api/values').then(function(response) {
+            vm.test = response.data;
+
+             $uibModal.open({
             animation: true,
             templateUrl: 'templates/OrderListModal.html',
             controller: 'CreateController',
@@ -71,22 +67,26 @@ app.controller('SecondModalController', ['$uibModal', '$uibModalStack', '$uibMod
                     return vm.sender;
                 },
                 receiver: function() {
-                    return receiverInfo
+                    return  vm.test
                 }
             }
         });
+        })
+
     };
 }]);
 
 app.controller('CreateController', ['$uibModal', '$uibModalStack', '$uibModalInstance', 'sender', 'receiver', function($uibModal, $uibModalStack, $uibModalInstance, sender, receiver) {
     var vm = this;
     var senderInfo = sender;
-    var receiverInfo = receiver;
+    vm.receiverInfo = receiver;
     vm.products = [{
         'quantity': "",
         'type': "",
         'description': ""
     }];
+
+    console.log(vm.receiverInfo);
     vm.Confirm = function() {
         console.log(senderInfo);
         console.log(receiverInfo);

@@ -18,19 +18,15 @@
             <div class="form-group">
                 <div class="form-group col-md-6 pull-right">
                     <label class="control-label col-sm-4" style="right: 55px"><span class="require">* </span>Gửi Đến:</label>
+                    
+                   
                     <div class="col-sm-6" style="right: 78px">
-                        <select ng-model="Data.sendFrom" class="form-control">
+                        <select class="form-control" >
                                 <option value="" disabled selected>Chọn Nơi Đến</option>
-								 <optgroup label="Sài Gòn">
-                                    <option value="Quận 1">Quận 1</option>
-                                    <option value="Quận 3">Quận 3</option>
-                                    <option value="Quận 5">Quận 5</option>
-                                    <option value="Quận Tân Bình">Quận Tân Bình</option>
-                                </optgroup>
-								<option value="Nha Trang">Nha Trang</option>
-								<option value="Cam Ranh">Cam Ranh</option>
-								<option value="Khánh Hòa">Khánh Hòa</option>
-								<option value="Ninh Hòa">Ninh Hòa</option>
+                                
+                                <option  ng-repeat="branch in createCtrl.receiverInfo.Branch" value="{{branch.Id}}">
+                                            {{branch.Address}}
+                                </option>
 							</select>
                     </div>
                 </div>
@@ -99,12 +95,14 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th class="col-xs-1 input-group">
+                                        <th class="col-md-1">
+                                            Bulk action
                                             <input type="checkbox" ng-model="createCtrl.selectedAll" ng-click="createCtrl.SelectAll()" />
                                         </th>
-                                        <th><strong>Khối Lượng</strong></th>
                                         <th><strong>Loại Hàng</strong></th>
+                                        <th><strong>Khối Lượng</strong></th>
                                         <th><strong>Số Lượng</strong></th>
+                                        <th><strong>De Vo</strong></th>
                                         <th><strong>Đảm Bảo</strong></th>
                                         <th><strong>Khai Giá</strong></th>
                                         <th><strong>Ghi Chú</strong></th>
@@ -113,38 +111,36 @@
                                 </thead>
                                 <tbody ng-repeat="product in createCtrl.products">
                                     <tr>
-                                        <td class="col-xs-1">
+                                        <td class="col-md-1">
                                             <input type="checkbox" ng-model="product.selected" />
                                         </td>
                                         <td class="input-group">
                                             <input type="text" class="form-control" ng-model="product.quantity" id="locationName">
-                                            <span class="input-group-addon">kg</span>
+                                            <span class="input-group-addon">{{createCtrl.selected[$index].CalculationUnit}}</span>
+                                            <span class="input-group-addon">{{createCtrl.selected[$index].Value}}</span>
                                         </td>
-                                        <td>
-                                            <select ng-model="product.type " name="sendTo " class="form-control">
-                                                <option value=" " disabled selected>----- Chọn Mặt Hàng -----</option>
-                                                <option value="Thùng ">Thùng</option>
-                                                <option value="Xe Máy ">Xe Máy</option>
-                                                <option value="Kilogram ">Kilogram</option>
-                                                <option value="Cây ">Cây</option>
-                                                <option value="Bao ">Bao</option>
-                                                <option value="Kiện ">Kiện</option>
-                                                <option value="Gói ">Gói</option>
+                                         <td class="col-md-1">
+                                    <select ng-model="createCtrl.selected[$index]" ng-options="item.MerchandiseType1  group by item.Description for item  in createCtrl.receiverInfo.Type" name="sendTo " class="form-control">
+                                                        <option>--</option>
                                             </select>
+          
                                         </td>
-                                        <td class="col-xs-3">
+                                         <td class="col-md-1">
                                             <input type="text" class="form-control" ng-model="product.quantity" id="locationName">
                                         </td>
-                                        <td>
+                                        <td class="col-md-1">
                                             <input type="checkbox" ng-model="product.selected" />
                                         </td>
-                                        <td>
+                                       <td class="col-md-1">
+                                            <input type="checkbox" ng-model="product.selected" />
+                                        </td>
+                                         <td class="col-md-1">
                                             <input type="text" class="form-control" ng-model="product.description" id="locationName" placeholder="Khai giá (Nếu có)">
                                         </td>
-                                        <td>
+                                      <td class="col-md-1">
                                             <input type="text" class="form-control" ng-model="product.description" id="locationName" placeholder="Thêm ghi chú">
                                         </td>
-                                        <td>$900</td>
+                                        <td class="col-md-1">{{createCtrl.selected[$index].Value * 5  | currency : " VND": 0}}</td>
                                     </tr>
 
                                 </tbody>
