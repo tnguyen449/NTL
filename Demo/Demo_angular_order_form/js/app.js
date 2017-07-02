@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.bootstrap','angular.filter']);
+var app = angular.module('app', ['ui.bootstrap', 'angular.filter']);
 app.controller('MainController', ['$uibModal', '$uibModalStack', function($uibModal, $uibModalStack) {
     var vm = this;
     vm.CreateOrder = function() {
@@ -51,28 +51,45 @@ app.controller('SecondModalController', ['$uibModal', '$uibModalStack', '$uibMod
     };
     vm.MoveToThirdModal = function() {
         vm.test = [];
-        $http.get('http://localhost:57363/api/values').then(function(response) {
-            vm.test = response.data;
+        // $http.get('http://localhost:57363/api/values').then(function(response) {
+        //     vm.test = response.data;
 
-             $uibModal.open({
+        //     $uibModal.open({
+        //         animation: true,
+        //         templateUrl: 'templates/OrderListModal.html',
+        //         controller: 'CreateController',
+        //         controllerAs: 'createCtrl',
+        //         // size: 'lg',
+        //         windowClass: 'app-modal-window',
+        //         bindToController: true,
+        //         resolve: {
+        //             sender: function() {
+        //                 return vm.sender;
+        //             },
+        //             receiver: function() {
+        //                 return vm.test
+        //             }
+        //         }
+        //     });
+        // })
+
+        $uibModal.open({
             animation: true,
             templateUrl: 'templates/OrderListModal.html',
             controller: 'CreateController',
             controllerAs: 'createCtrl',
-            // size: 'lg',
-            windowClass: 'app-modal-window',
+            size: 'lg',
+            //  windowClass: 'app-modal-window',
             bindToController: true,
             resolve: {
                 sender: function() {
                     return vm.sender;
                 },
                 receiver: function() {
-                    return  vm.test
+                    return vm.test
                 }
             }
         });
-        })
-
     };
 }]);
 
@@ -136,5 +153,26 @@ app.controller('CreateController', ['$uibModal', '$uibModalStack', '$uibModalIns
         angular.forEach(vm.products, function(product) {
             product.selected = vm.selectedAll;
         });
-    }
+    };
+
+    vm.dateOptions = {
+        formatYear: 'yyyy',
+        maxDate: new Date(2099, 12, 31),
+        minDate: new Date(),
+        startingDay: 1
+    };
+
+    vm.PickDate = function() {
+        vm.popUpDate.opened = true;
+    };
+
+    vm.SetDate = function(year, month, day) {
+        vm.dt = new Date(year, month, day);
+    };
+
+    vm.format = 'dd/MM/yyyy';
+
+    vm.popUpDate = {
+        opened: false
+    };
 }]);
