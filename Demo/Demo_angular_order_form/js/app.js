@@ -16,13 +16,14 @@ app.controller('MainController', ['$uibModal', '$uibModalStack', function($uibMo
 app.controller('FirstModalController', ['$uibModal', '$uibModalStack', '$uibModalInstance', function($uibModal, $uibModalStack, $uibModalInstance) {
     var vm = this;
     vm.receiver = {};
-    vm.Previous = function() {
-        $uibModalInstance.dismiss('cancel');
-    };
+    // vm.Previous = function() {
+    //     $uibModalInstance.dismiss('cancel');
+    // };
     vm.Cancel = function() {
         $uibModalStack.dismissAll('cancel');
     };
     vm.MoveToSecondForm = function() {
+        $uibModalInstance.dismiss(vm.receiver);
         $uibModal.open({
             animation: true,
             templateUrl: 'templates/SenderOrderModal.html',
@@ -42,9 +43,9 @@ app.controller('FirstModalController', ['$uibModal', '$uibModalStack', '$uibModa
 app.controller('SecondModalController', ['$uibModal', '$uibModalStack', '$uibModalInstance', 'receiver', '$http', function($uibModal, $uibModalStack, $uibModalInstance, receiver, $http) {
     var vm = this;
     vm.sender = {};
-    var receiverInfo = receiver;
+    vm.receiverInfo = receiver;
     vm.Previous = function() {
-        $uibModalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss(vm.sender);
     };
     vm.Cancel = function() {
         $uibModalStack.dismissAll('cancel');
@@ -95,7 +96,7 @@ app.controller('SecondModalController', ['$uibModal', '$uibModalStack', '$uibMod
 
 app.controller('CreateController', ['$uibModal', '$uibModalStack', '$uibModalInstance', 'sender', 'receiver', function($uibModal, $uibModalStack, $uibModalInstance, sender, receiver) {
     var vm = this;
-    var senderInfo = sender;
+    vm.senderInfo = sender;
     vm.receiverInfo = receiver;
     vm.products = [{
         'quantity': "",
@@ -155,6 +156,19 @@ app.controller('CreateController', ['$uibModal', '$uibModalStack', '$uibModalIns
         });
     };
 
+    //script for guarantee value checkbox
+    vm.guarantee;
+    vm.SelectGuarantee = function(select) {
+        if (select == 'true') {
+            var total = 400000 * 0.01;
+            console.log(total);
+        } else {
+            var total = 400000;
+            console.log(total);
+        }
+    }
+
+    //script for date picker
     vm.dateOptions = {
         formatYear: 'yyyy',
         maxDate: new Date(2099, 12, 31),

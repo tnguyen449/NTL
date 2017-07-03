@@ -93,10 +93,10 @@
                     </div>
                     <div class="panel-body col-lg-12">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table.table-condensed">
                                 <thead>
                                     <tr>
-                                        <th class="col-md-1">
+                                        <th class="input-control col-xs-1">
                                             <input type="checkbox" ng-model="createCtrl.selectedAll" ng-click="createCtrl.SelectAll()" />
                                         </th>
                                         <th><strong>Loại Hàng</strong></th>
@@ -112,7 +112,7 @@
                                 <tbody ng-repeat="product in createCtrl.products">
                                     <tr>
                                         <!--Check Box - Select-->
-                                        <td class="col-md-1">
+                                        <td class="col-md-1 inherit-float">
                                             <input type="checkbox" ng-model="product.selected" />
                                         </td>
 
@@ -135,14 +135,14 @@
                                             <input type="text" class="form-control" ng-model="product.quantity" id="locationName">
                                         </td>
 
-                                        <!-- Check Box - Gurantee-->
+                                        <!-- Check Box - Guarantee-->
                                         <td class="col-md-1">
-                                            <input type="checkbox" ng-model="product.selected" />
+                                            <input type="checkbox" ng-model="guarantee.selected" />
                                         </td>
 
                                         <!--Check Box - Fragile-->
                                         <td class="col-md-1">
-                                            <input type="checkbox" ng-model="product.selected" />
+                                            <input type="checkbox" ng-model="createCtrl.product.selected" />
                                         </td>
 
                                         <!--Input - Billing Declaration-->
@@ -163,6 +163,10 @@
                                 <tr class="col-md-12">
                                     <td class="highrow"></td>
                                     <td class="highrow"></td>
+                                    <td><strong>Đảm Bảo</strong></td>
+                                    <td class="col-md-1">
+                                        <input type="checkbox" ng-model="createCtrl.guarantee" ng-change="createCtrl.SelectGuarantee(createCtrl.guarantee)" ng-init="createCtrl.guarantee = false" ng-true-value="'true'" ng-false-value="'false'" />
+                                    </td>
                                     <td class="highrow text-center col-md-3"><strong>Tổng Cộng:</strong></td>
                                     <td class="highrow text-right col-md-3">$958.00</td>
                                 </tr>
