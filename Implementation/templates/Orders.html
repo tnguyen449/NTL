@@ -1,0 +1,87 @@
+<div id="page-wrapper">
+    <div class="container">
+        <div class="page-header">
+            <h1>QUẢN LÝ ĐƠN VẬN</h1>
+            <hr>
+            <div style="border-bottom: 2px solid grey"></div>
+
+            <div class="pull-right">
+                <td class="text-center"><a ng-click="CreateOrder()" class="btn btn-md btn-primary align-center"><span class="glyphicon glyphicon-plus"></span> Create Order</a></td>
+            </div>
+            <hr>
+        </div>
+
+        <!-- Simple Invoice - START -->
+        <div class="container">
+            <table class=" table table-condensed table-stripped table-bordered">
+                <tbody ng-repeat="order in orders" class="align-center">
+                    <tr>
+                        <td>{{$index}}</td>
+                        <td class="text-center"><a ng-click="ShowOrderDetail($index)">{{order.orderID}}</a></td>
+                        <td>{{order.sender.fullName}}</td>
+                        <td>{{order.sender.phone}}</td>
+                        <td class="text-left ">{{order.sentDate}}</td>
+                        <td>{{order.receiver.address}}</td>
+                        <td class="text-center">$900</td>
+                        <td class="text-center"><span class="label label-success">{{order.status}}</span></td>
+                        <td class="text-center">
+                            <!-- Single button -->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Change Status <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li style="cursor:context-menu"><a ng-click="ShowOrderDetail($index)" ng-repeat="stt in status">{{stt.type}}</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td class="text-center"><a ng-click="ShowOrderDetail($index)" class="btn btn-md btn-info align-center">Details</a></td>
+                        <td class="text-center"><a ng-click="ShowOrderDetail($index)">{{order.orderID}}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+        </div>
+    </div>
+
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center">#</th>
+                    <th><strong>Mã Đơn Vận</strong></th>
+                    <th><strong>Người gửi</strong></th>
+                    <th><strong>Số Điện Thoại</strong></th>
+                    <th><strong>Ngày Gửi</strong></th>
+                    <th><strong>Gửi Đến</strong></th>
+                    <th><strong>Tổng Cộng</strong></th>
+                    <th><strong>Trạng Thái Đơn Hàng</strong></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <td>{{$index}}</td>
+                <td class="text-center"><a ng-click="ShowOrderDetail($index)">{{order.orderID}}</a></td>
+                <td>{{order.sender.fullName}}</td>
+                <td>{{order.sender.phone}}</td>
+                <td class="text-left ">{{order.sentDate}}</td>
+                <td>{{order.receiver.address}}</td>
+                <td class="text-center">$900</td>
+                <td class="text-center"><span class="label label-success">{{order.status}}</span></td>
+                <td class="text-center">
+                    <!-- Single button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   Đổi Trạng Thái Đơn Vận <span class="caret"></span>
+                                </button>
+                        <ul class="dropdown-menu">
+                            <li style="cursor:context-menu"><a ng-click="ShowOrderDetail($index)" ng-repeat="stt in status">{{stt.type}}</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="text-center"><a ng-click="ShowOrderDetail($index)" class="btn btn-md btn-info align-center">Chi Tiết</a></td>
+            </tbody>
+        </table>
+    </div>
