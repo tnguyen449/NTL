@@ -18,8 +18,6 @@
             <div class="form-group">
                 <div class="form-group col-md-6 pull-right">
                     <label class="control-label col-sm-4" style="right: 55px"><span class="require">* </span>Gửi Đến:</label>
-
-
                     <div class="col-sm-6" style="right: 78px">
                         <select class="form-control">
                                 <option value="" disabled selected>Chọn Nơi Đến</option>
@@ -49,6 +47,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="control-label col-sm-3"><span class="require">* </span>Ngày Gửi:</label>
                 <div class="col-sm-7">
@@ -85,6 +84,20 @@
             </div>
 
             <div class="form-group">
+                <label class="control-label col-sm-3">Phụ Phí/Bảo Hiểm:</label>
+                <input type="checkbox" name="optradio" ng-model='createCtrl.guarantee' ng-change="createCtrl.SelectGuarantee(createCtrl.guarantee)" ng-init="createCtrl.guarantee = false" ng-true-value="'true'" ng-false-value="'false'" /> Hàng Đảm Bảo
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12" ng-show="createCtrl.animation.show == 'true'">
+                    <label class="control-label col-sm-3">Nhập CMND Người Nhận:</label>
+                    <div class="col-sm-6">
+                        <input type="input" placeholder="Số chứng minh nhân dân" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label class="control-label col-md-12"><h3 class="text-center"><strong>Chi Tiết Đơn Vận</strong></h3></label>
                 <div class="panel panel-default">
                     <div class="col-md-3 pull-right">
@@ -96,15 +109,15 @@
                             <table class="table.table-condensed">
                                 <thead>
                                     <tr>
-                                        <th class="input-control col-xs-1">
+                                        <th class="input-control col-lg-1">
                                             <input type="checkbox" ng-model="createCtrl.selectedAll" ng-click="createCtrl.SelectAll()" />
                                         </th>
-                                        <th><strong>Loại Hàng</strong></th>
                                         <th><strong>Khối Lượng</strong></th>
+                                        <th><strong>Loại Hàng</strong></th>
+                                        <th><strong>Giá Xe Đặc Biệt</strong></th>
                                         <th><strong>Số Lượng</strong></th>
-                                        <th><strong>Dễ Vỡ</strong></th>
-                                        <th><strong>Đảm Bảo</strong></th>
                                         <th><strong>Khai Giá</strong></th>
+                                        <th><strong>Giá Trị Khai</strong></th>
                                         <th><strong>Ghi Chú</strong></th>
                                         <th><strong>Thành Tiền</strong></th>
                                     </tr>
@@ -112,7 +125,7 @@
                                 <tbody ng-repeat="product in createCtrl.products">
                                     <tr>
                                         <!--Check Box - Select-->
-                                        <td class="col-md-1 inherit-float">
+                                        <td class="col-lg-1">
                                             <input type="checkbox" ng-model="product.selected" />
                                         </td>
 
@@ -132,7 +145,7 @@
 
                                         <!--Input - Quantity-->
                                         <td class="col-md-1">
-                                            <input type="text" class="form-control" ng-model="product.quantity" id="locationName">
+                                            <input type="text" class="form-control" ng-model="product.total" id="locationName">
                                         </td>
 
                                         <!-- Check Box - Guarantee-->
@@ -140,14 +153,14 @@
                                             <input type="checkbox" ng-model="guarantee.selected" />
                                         </td>
 
-                                        <!--Check Box - Fragile-->
+                                        <!--Check Box - Billing Declaration-->
                                         <td class="col-md-1">
-                                            <input type="checkbox" ng-model="createCtrl.product.selected" />
+                                            <input type="checkbox" ng-model='createCtrl.declaredValue' ng-change="createCtrl.SelectBillingDeclaration(createCtrl.declaredValue)" ng-init="createCtrl.declaredValue = false" ng-true-value="'true'" ng-false-value="'false'" />
                                         </td>
 
                                         <!--Input - Billing Declaration-->
                                         <td class="col-md-1">
-                                            <input type="text" class="form-control" ng-model="product.description" id="locationName" placeholder="Khai giá (Nếu có)">
+                                            <input type="text" class="form-control" ng-init="createCtrl.animation.disabled = true" ng-disabled="createCtrl.animation.disabled" ng-model="product.description" id="locationName" placeholder="Khai giá (Nếu có)">
                                         </td>
 
                                         <!--Input - Description-->
@@ -156,19 +169,18 @@
                                         </td>
 
                                         <!--Text - Total-->
-                                        <td class="col-md-1">{{createCtrl.selected[$index].Value * 5 | currency : "VND ": 0}}</td>
+                                        <td class="col-md-1">{{product.total * 5 | currency : "VND ": 0}}</td>
                                     </tr>
 
                                 </tbody>
                                 <tr class="col-md-12">
                                     <td class="highrow"></td>
                                     <td class="highrow"></td>
-                                    <td><strong>Đảm Bảo</strong></td>
-                                    <td class="col-md-1">
-                                        <input type="checkbox" ng-model="createCtrl.guarantee" ng-change="createCtrl.SelectGuarantee(createCtrl.guarantee)" ng-init="createCtrl.guarantee = false" ng-true-value="'true'" ng-false-value="'false'" />
+                                    <td class="col-lg-1">
+                                        <input type="checkbox" />
                                     </td>
                                     <td class="highrow text-center col-md-3"><strong>Tổng Cộng:</strong></td>
-                                    <td class="highrow text-right col-md-3">$958.00</td>
+                                    <td class="highrow text-right col-md-3">{{createCtrl.GetSubTotal()}}</td>
                                 </tr>
                             </table>
                         </div>

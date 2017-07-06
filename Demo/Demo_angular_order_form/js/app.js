@@ -80,7 +80,6 @@ app.controller('SecondModalController', ['$uibModal', '$uibModalStack', '$uibMod
             controller: 'CreateController',
             controllerAs: 'createCtrl',
             size: 'lg',
-            //  windowClass: 'app-modal-window',
             bindToController: true,
             resolve: {
                 sender: function() {
@@ -98,13 +97,28 @@ app.controller('CreateController', ['$uibModal', '$uibModalStack', '$uibModalIns
     var vm = this;
     vm.senderInfo = sender;
     vm.receiverInfo = receiver;
+    vm.animation = [{
+        'show': 'false',
+        'disabled': true
+    }];
+    //$scope for add new item in bill
     vm.products = [{
         'quantity': "",
         'type': "",
-        'description': ""
+        'description': "",
+        'total': 0
     }];
+    vm.AddItem = function(product) {
+        vm.products.push({
+            'quantity': "",
+            'type': "",
+            'description': "",
+            'total': 0
+        });
+        console.log(vm.products.total);
+    };
 
-    console.log(vm.receiverInfo);
+    //3 Functions for the last modal template
     vm.Confirm = function() {
         console.log(senderInfo);
         console.log(receiverInfo);
@@ -122,14 +136,6 @@ app.controller('CreateController', ['$uibModal', '$uibModalStack', '$uibModalIns
     };
     vm.Cancel = function() {
         $uibModalStack.dismissAll();
-    };
-
-    vm.AddItem = function(product) {
-        vm.products.push({
-            'quantity': "",
-            'type': "",
-            'description': ""
-        });
     };
 
     //Remove items that are checked in checkbox.
@@ -156,17 +162,46 @@ app.controller('CreateController', ['$uibModal', '$uibModalStack', '$uibModalIns
         });
     };
 
+
+    vm.declaredValue;
+    vm.SelectBillingDeclaration = function(select) {
+        if (select == 'true') {
+            vm.animation.disabled = false;
+            console.log(vm.animation.disabled);
+        } else {
+            vm.animation.disabled = true;
+            console.log(vm.animation.disabled);
+        }
+    };
+
     //script for guarantee value checkbox
     vm.guarantee;
     vm.SelectGuarantee = function(select) {
         if (select == 'true') {
-            var total = 400000 * 0.01;
+            var total = vm.products.total + (vm.products.total * 0.01);
+            vm.animation.show = 'true';
             console.log(total);
         } else {
-            var total = 400000;
+            var total = vm.products.total;
+            vm.animation.show = 'false';
             console.log(total);
         }
-    }
+    };
+
+
+    //Calculate sub total
+    vm.GetSubTotal = function() {
+        var total = 0;
+        for (var i = 0; i < vm.products.length; i++) {
+            var product = vm.products[i];
+            product.total = total;
+            if (product.total == 0) {
+                total = 0;
+            }
+            total += (product.total + 2000);
+        };
+        return total;
+    };
 
     //script for date picker
     vm.dateOptions = {
