@@ -225,3 +225,55 @@ app.controller('CreateController', ['$uibModal', '$uibModalStack', '$uibModalIns
         opened: false
     };
 }]);
+
+app.controller('TestController', function() {
+    var vm = this;
+    vm.customerInfo = {
+        'senderID': 'SID1',
+        'senderName': 'Trung Nguyen',
+        'senderPhone': '0934573004',
+        'receiverID': 'RID1',
+        'receiverName': 'Anh Phan',
+        'receiverPhone': '0935656667'
+    };
+
+    MerchandiseInfo = [{
+            'Id': 0,
+            "MerchandiseId": "SQ1NT1",
+            "MerchandiseTypeId": 1,
+            "MerchandiseQuantity": "10",
+            "MerchandiseUnit": "15",
+            "StatusId": 1,
+            "IsBreakable": true,
+            "IsGuarantee": false,
+            "GuaranteePrice": 1000,
+            "Description": "Some thing ",
+            "SubTotal": 100000,
+            "CreatedBy": "Customer"
+        },
+        {
+            "Id": 1,
+            "MerchandiseId": "SQ1NT1",
+            "MerchandiseTypeId": 2,
+            "MerchandiseQuantity": "1",
+            "MerchandiseUnit": "5",
+            "StatusId": 1,
+            "IsBreakable": true,
+            "IsGuarantee": false,
+            "GuaranteePrice": 1000,
+            "Description": "Some thing ",
+            "SubTotal": 100000,
+            "CreatedBy": "Customer"
+        }
+    ]
+
+    vm.billOfLandingInfo = {
+        'bolId': '1',
+        'sender': vm.customerInfo.senderName,
+        'receiver': vm.customerInfo.receiverName
+    };
+
+    vm.TestData = function() {
+        console.log(vm.billOfLandingInfo);
+    }
+});
