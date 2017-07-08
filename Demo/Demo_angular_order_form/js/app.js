@@ -237,7 +237,7 @@ app.controller('TestController', function() {
         'receiverPhone': '0935656667'
     };
 
-    MerchandiseInfo = [{
+    vm.MerchandiseInfo = [{
             'Id': 0,
             "MerchandiseId": "SQ1NT1",
             "MerchandiseTypeId": 1,
@@ -265,15 +265,16 @@ app.controller('TestController', function() {
             "SubTotal": 100000,
             "CreatedBy": "Customer"
         }
-    ]
-
+    ];
     vm.billOfLandingInfo = {
         'bolId': '1',
         'sender': vm.customerInfo.senderName,
-        'receiver': vm.customerInfo.receiverName
+        'receiver': vm.customerInfo.receiverName,
+        'merchandise': vm.MerchandiseInfo[1].SubTotal
     };
 
     vm.TestData = function() {
+        console.log(vm.MerchandiseInfo[1].Id);
         console.log(vm.billOfLandingInfo);
     }
 });
