@@ -86,7 +86,7 @@ app.controller('SecondModalController', ['$uibModal', '$uibModalStack', '$uibMod
                     return vm.sender;
                 },
                 receiver: function() {
-                    return vm.test
+                    return vm.receiverInfo
                 }
             }
         });
@@ -103,25 +103,33 @@ app.controller('CreateController', ['$uibModal', '$uibModalStack', '$uibModalIns
     }];
     //$scope for add new item in bill
     vm.products = [{
-        'quantity': "",
-        'type': "",
-        'description': "",
-        'total': 0
-    }];
-    vm.AddItem = function(product) {
-        vm.products.push({
-            'quantity': "",
+            'id': 0,
+            'quantity': null,
             'type': "",
             'description': "",
-            'total': 0
-        });
-        console.log(vm.products.total);
+            'total': null
+    }];
+
+
+
+    vm.AddItem = function(products) {
+        
+        vm.inserted = {
+            'id': vm.products.length +1,
+            'quantity': null,
+            'type': "",
+            'description': "",
+            'total': null
+        };
+        vm.products.push(vm.inserted);
+      
+       
     };
 
     //3 Functions for the last modal template
     vm.Confirm = function() {
-        console.log(senderInfo);
-        console.log(receiverInfo);
+        console.log(vm.senderInfo);
+        console.log(vm.receiverInfo);
         vm.selectedAll = true;
         var newList = [];
         angular.forEach(vm.products, function(product) {
@@ -130,6 +138,7 @@ app.controller('CreateController', ['$uibModal', '$uibModalStack', '$uibModalIns
         });
         vm.products = newList;
         $uibModalStack.dismissAll();
+        console.log(vm.products);
     }
     vm.Previous = function() {
         $uibModalInstance.dismiss();
@@ -191,16 +200,19 @@ app.controller('CreateController', ['$uibModal', '$uibModalStack', '$uibModalIns
 
     //Calculate sub total
     vm.GetSubTotal = function() {
-        var total = 0;
-        for (var i = 0; i < vm.products.length; i++) {
-            var product = vm.products[i];
-            product.total = total;
-            if (product.total == 0) {
-                total = 0;
+        
+        var subtotal =1. ;
+        for (var i = 0; i < vm.products.length -1; i++) {
+            if (vm.products[i].total != 0) {
+              subtotal = subtotal+  vm.products[i].total ;
+              console.log(typeof(subtotal));
+              console.log(typeof(vm.products[i].id));
+              console.log(parseInt(subtotal)+ 3000);
             }
-            total += (product.total + 2000);
+            
         };
-        return total;
+        
+        return  parseInt(subtotal);
     };
 
     //script for date picker
@@ -233,7 +245,7 @@ app.controller('TestController', function() {
         'senderName': 'Trung Nguyen',
         'senderPhone': '0934573004',
         'receiverID': 'RID1',
-        'receiverName': 'Anh Phan',
+        'receiverName': 'Vuong Phan',
         'receiverPhone': '0935656667'
     };
 
@@ -266,15 +278,22 @@ app.controller('TestController', function() {
             "CreatedBy": "Customer"
         }
     ];
+
+
     vm.billOfLandingInfo = {
         'bolId': '1',
         'sender': vm.customerInfo.senderName,
         'receiver': vm.customerInfo.receiverName,
         'merchandise': vm.MerchandiseInfo[1].SubTotal
+
     };
+    vm.submit={
+       'MerchandiseInfo' :vm.MerchandiseInfo,
+        'CustomerInfo':vm.customerInfo
+    }
 
     vm.TestData = function() {
         console.log(vm.MerchandiseInfo[1].Id);
-        console.log(vm.billOfLandingInfo);
+        console.log(vm.submit);
     }
 });

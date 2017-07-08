@@ -1,18 +1,3 @@
-[{
-        "name": "Thùng"
-    },
-    {
-        "name": "Cây"
-    }, {
-        "name": "Chiếc",
-        "subitem": [{
-            "name": "Exciter"
-        }, {
-            "name": "Tay Ga"
-        }, {
-            "name": "Xe Số"
-        }, {
-            "name": "Phân Khối Lớn"
-        }]
-    }
-]
+billOfLandingInfo:{
+   id: 
+}
