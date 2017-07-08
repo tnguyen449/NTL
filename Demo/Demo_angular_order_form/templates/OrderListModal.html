@@ -125,7 +125,7 @@
                                 <tbody ng-repeat="product in createCtrl.products">
                                     <tr>
                                         <!--Check Box - Select-->
-                                        <td class="col-lg-1">
+                                        <td>
                                             <input type="checkbox" ng-model="product.selected" />
                                         </td>
 
@@ -137,15 +137,15 @@
                                         </td>
 
                                         <!--Input  - Weight-->
-                                        <td class="input-group">
+                                        <!--<td class="input-group">
                                             <input type="text" class="form-control" ng-model="product.quantity" id="locationName">
                                             <span class="input-group-addon">{{createCtrl.selected[$index].CalculationUnit}}</span>
                                             <span class="input-group-addon">{{createCtrl.selected[$index].Value}}</span>
-                                        </td>
+                                        </td>-->
 
                                         <!--Input - Quantity-->
-                                        <td class="col-md-1">
-                                            <input type="text" class="form-control" ng-model="product.total" id="locationName">
+                                        <td class="col-md-3">
+                                            <input type="number" class="form-control" ng-model="product.total" id="locationName" placeholder="gia">
                                         </td>
 
                                         <!-- Check Box - Guarantee-->
@@ -169,7 +169,7 @@
                                         </td>
 
                                         <!--Text - Total-->
-                                        <td class="col-md-1">{{product.total * 5 | currency : "VND ": 0}}</td>
+                                        <td class="col-md-1">{{product.total}}</td>
                                     </tr>
 
                                 </tbody>
