@@ -4,19 +4,20 @@
         <div class="col-md-12">
             <div ba-panel ba-panel-title="TẠO MỚI ĐƠN VẬN" ba-panel-class="with-scroll">
                 <ba-wizard>
-                    <ba-wizard-step title="Thông Tin Khách Hàng" form="vm.personalInfoForm">
-                        <form name="vm.personalInfoForm" novalidate>
+                    <!--The first wizard page - Customer Information-->
+                    <ba-wizard-step title="Thông Tin Khách Hàng">
+                        <form>
                             <div class="row">
                                 <div class="col-md-6">
                                     <h2>Người Gửi</h2>
                                     <div class="form-group has-feedback">
                                         <label for="exampleUsername1">Họ Tên</label>
-                                        <input type="text" class="form-control" id="exampleUsername1" name="username" placeholder="Username" ng-model="vm.personalInfo.username">
+                                        <input type="text" class="form-control" name="username" placeholder="Nhập Họ và Tên Người Gửi" ng-model="vm.customerInfo.senderName">
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Số Điện Thoại</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email" ng-model="vm.personalInfo.email">
+                                        <input type="text" class="form-control" id="exampleInputEmail1" name="email" placeholder="Nhập Số Điện Thoại Người Gửi" ng-model="vm.customerInfo.senderPhone">
                                         <span class="help-block error-block basic-block">Proper email required</span>
                                     </div>
                                 </div>
@@ -24,28 +25,30 @@
                                     <h2>Người Nhận</h2>
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Họ Tên</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" ng-model="vm.personalInfo.password">
+                                        <input type="text" class="form-control" id="exampleInputPassword1" name="password" placeholder="Nhập Họ và Tên Người Nhận" ng-model="vm.customerInfo.receivername">
                                         <span class="help-block error-block basic-block">Required</span>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputConfirmPassword1">Số Điện Thoại</label>
-                                        <input type="password" class="form-control" id="exampleInputConfirmPassword1" name="confirmPassword" placeholder="Confirm Password" ng-model="vm.personalInfo.confirmPassword">
+                                        <input type="text" class="form-control" id="exampleInputConfirmPassword1" name="confirmPassword" placeholder="Nhập Số Điện Thoại Người Nhận" ng-model="vm.customerInfo.receiverPhone">
                                         <span class="help-block error-block basic-block">Passwords should match</span>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </ba-wizard-step>
+                    <!--End the first wizard-->
 
-                    <ba-wizard-step title="Thông Tin Đơn Hàng" form="vm.addressForm">
-                        <form name="vm.personalInfoForm" novalidate>
+                    <!--The second wizard form - Bill of landing Information-->
+                    <ba-wizard-step title="Thông Tin Đơn Hàng">
+                        <form>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="  form-group">
                                         <fieldset>
                                             <label class="control-label col-md-12">Mã Đơn Hàng:</label>
                                             <div class="col-md-5">
-                                                <input type="text" class="form-control" ng-value="vm.Id()" id="locationName" readonly>
+                                                <input type="text" class="form-control" ng-value="vm.Id()" ng-model="vm.bolInfo.BolId" id="locationName" readonly>
                                             </div>
                                         </fieldset>
                                     </div>
@@ -56,20 +59,14 @@
                                             <label class="control-label col-md-6"><span class="require">* </span>Gửi Từ:</label>
                                             <label class="control-label col-md-6"><span class="require">* </span>Gửi Đến:</label>
                                             <div class="col-md-6">
-                                                <select class="form-control">
-                                                <option value="" disabled selected>Chọn Nơi Gửi</option>                                                
-                                                <option  ng-repeat="branch in createCtrl.receiverInfo.Branch" value="{{branch.Id}}">
-                                                            {{branch.Address}}
-                                                </option>
-                                            </select>
+                                                <select class="form-control" ng-model="vm.bolInfo.BolFrom" ng-options="branch.Name group by branch.Description for branch in vm.branchInfo">
+                                                    <option>Chọn Nơi Gửi</option>
+                                                </select>
                                             </div>
                                             <div class="col-md-6">
-                                                <select class="form-control">
-                                                <option value="" disabled selected>Chọn Nơi Gửi</option>                                                
-                                                <option  ng-repeat="branch in createCtrl.receiverInfo.Branch" value="{{branch.Id}}">
-                                                            {{branch.Address}}
-                                                </option>
-                                            </select>
+                                                <select class="form-control" ng-model="vm.bolInfo.BolTo" ng-options="branch.Name group by branch.Description for branch in vm.branchInfo">
+                                                    <option>Chọn Nơi Gửi</option>
+                                                </select>
                                             </div>
                                         </fieldset>
                                     </div>
@@ -80,11 +77,10 @@
                                         <fieldset>
                                             <label class="control-label col-md-12"><span class="require">* </span>Ngày Gửi:</label>
                                             <div class="col-md-5">
-                                                <p class="input-group ">
-                                                    <input type="text" class="form-control" uib-datepicker-popup={{createCtrl.format}} ng-model="createCtrl.startDate" ng-value="createCtrl.dateOptions.minDate |  date:'dd/MM/yyyy'" is-open="createCtrl.popUpDate.opened" datepicker-options="createCtrl.dateOptions"
-                                                        close-text="Close" />
+                                                <p class="input-group">
+                                                    <input type="text" class="form-control" uib-datepicker-popup={{vm.format}} ng-model="vm.bolInfo.SentDate" ng-value="vm.dateOptions.minDate |  date:'dd/MM/yyyy'" is-open="vm.popUpDate.opened" datepicker-options="vm.dateOptions" close-text="Close" />
                                                     <span class="input-group-btn">
-			                                        <button class="btn btn-default" ng-click="createCtrl.PickDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+			                                        <button class="btn btn-default" ng-click="vm.PickDate()"><i class="glyphicon glyphicon-calendar"></i></button>
 		                                     </span>
                                                 </p>
                                             </div>
@@ -99,18 +95,18 @@
                                             <div class="col-md-6">
                                                 <div class="col-md-12">
                                                     <div class="col-md-6">
-                                                        <input type="radio" name="optradio" /> Chuyển Phát Thường
+                                                        <input type="radio" name="optradio" ng-model="vm.bolInfo.DeliveryType" ng-value="1" /> Chuyển Phát Thường
                                                     </div>
                                                     <div class="col-md-6  ">
-                                                        <input type="radio" name="optradio" /> Chuyển Phát Nhanh
+                                                        <input type="radio" name="optradio" ng-model="vm.bolInfo.DeliveryType" ng-value="2" /> Chuyển Phát Nhanh
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="col-md-6  ">
-                                                        <input type="radio" name="optradio" /> Chuyển Phát Tận Nơi
+                                                        <input type="radio" name="optradio" ng-model="vm.bolInfo.DeliveryType" ng-value="3" /> Chuyển Phát Tận Nơi
                                                     </div>
                                                     <div class="col-md-6  ">
-                                                        <input type="radio" name="optradio" /> Chuyển Phát Tận Nơi Gấp
+                                                        <input type="radio" name="optradio" ng-model="vm.bolInfo.DeliveryType" ng-value="4" /> Chuyển Phát Tận Nơi Gấp
                                                     </div>
                                                 </div>
                                             </div>
@@ -124,7 +120,7 @@
                                             <div class="col-md-6">
                                                 <div class="col-md-12">
                                                     <div class="col-md-6">
-                                                        <input type="checkbox" name="optradio" ng-model='createCtrl.guarantee' ng-change="createCtrl.SelectGuarantee(createCtrl.guarantee)" ng-init="createCtrl.guarantee = false" ng-true-value="'true'" ng-false-value="'false'" />                                                        Hàng Đảm Bảo
+                                                        <input type="checkbox" name="optradio" ng-model='vm.guarantee' ng-change="vm.SelectGuarantee(vm.guarantee)" /> Hàng Đảm Bảo
                                                     </div>
                                                 </div>
                                             </div>
@@ -132,37 +128,129 @@
                                     </div>
                                 </div>
 
-                                <fieldset></fieldset>
-                                <fieldset></fieldset>
                                 <div class="col-md-12">
-                                    <div class="form-group">
+                                    <div class="form-group" ng-show="vm.showIdInput == true">
                                         <fieldset>
-                                            <div class="col-sm-12" ng-show="createCtrl.animation.show == 'true'">
-                                                <label class="control-label   ">Nhập CMND Người Nhận:</label>
-                                                <div class="  ">
-                                                    <input type="input" placeholder="Số chứng minh nhân dân" />
+                                            <label class="control-label col-md-3">Nhập CMND Người Nhận:</label>
+                                            <div class="col-md-6">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="input-sm form-control" ng-model="vm.customerInfo.SenderIdNumber" placeholder="Số chứng minh nhân dân" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </fieldset>
                                     </div>
                                 </div>
+
+                                <!--<div class="col-md-12">
+                                    <div class="form-group">
+                                        <fieldset>
+                                            <div class="col-sm-12" ng-show="vm.showIdInput == true">
+                                                <label class="control-label col-sm-3">Nhập CMND Người Nhận:</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" ng-model="vm.customerInfo.SenderIdNumber" placeholder="Số chứng minh nhân dân" />
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>-->
+                                <fieldset></fieldset>
+                                <fieldset></fieldset>
                             </div>
                         </form>
                     </ba-wizard-step>
+                    <!--End the second wizard form-->
 
-                    <ba-wizard-step title="Thông Tin Hàng Hóa" form="vm.productInfoForm">
+                    <!--The third wizard form - Merchandise Information-->
+                    <ba-wizard-step title="Thông Tin Hàng Hóa">
                         <div class="widgets">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div ba-panel ba-panel-title="Smart Table With Filtering, Sorting And Pagination" ba-panel-class="with-scroll">
-                                        <div include-with-scope="app/pages/tables/widgets/smartTable.html"></div>
+                                    <div class="add-row-editable-table col-md-12">
+                                        <div class="col-md-6">
+                                            <button class="btn btn-primary" ng-click="vm.addItem()"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Hàng Gửi</button>
+                                            <button class="btn btn-danger" type="button" ng-click="vm.removeItem()"><span class="glyphicon glyphicon-minus-sign "></span><strong> Xóa Hàng Gửi</strong></button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <ul><i class="fa fa-asterisk" style="color:red" aria-hidden="true"></i><strong style="color:red"> Chú Thích</strong>
+                                                <li><strong>KG:</strong> Khai Giá</li>
+                                                <li><strong>Giá ĐB:</strong> Giá Đặc Biệt (Dùng để kích hoạt nhập giá mới cho các loại hàng đặc biệt)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="horizontal-scroll col-md-12">
+                                        <table class="table" st-table="smartTableData">
+                                            <thead>
+                                                <tr>
+                                                    <th class="table-id">
+                                                        <input type="checkbox" ng-model="vm.selectedAll " ng-click="vm.SelectAll() " />
+                                                    </th>
+                                                    <th class="col-md-2 text-left">Loại Đơn Hàng</th>
+                                                    <th class="col-md-1 text-left">Số Lượng </th>
+                                                    <th class="col-md-2 text-left">Khối Lượng</th>
+                                                    <!--Check box group-->
+                                                    <th class="col-md-0.5 text-center">KG</th>
+                                                    <th class="col-md-0.5 text-center">Dễ Vỡ</th>
+                                                    <th class="col-md-0.5 text-center">Giá ĐB</th>
+                                                    <!--End check box group-->
+                                                    <th class="col-md-2 text-left">Giá Khai</th>
+                                                    <th class="col-md-2 text-left">Giá Đặc Biệt</th>
+                                                    <th class="col-md-2 text-left">Ghi Chú</th>
+                                                    <th>Thành Tiền</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="item in vm.merchandises">
+                                                    <td class="table-id">
+                                                        <input type="checkbox" ng-model="item.selected" />
+                                                    </td>
+                                                    <td>
+                                                        <select ng-model="vm.merchandises.selected[$index]" class="input-sm form-control" ng-options="item.MerchandiseType1 group by item.Description for item in vm.merchandises.Type" name="sendTo" class="form-control">
+                                                                <option>Chọn Loại Hàng</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="input-sm form-control" ng-model="item.total" id="locationName">
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <input type="text" class="input-sm form-control" ng-model="item.quantity" id="locationName">
+                                                            <span class="input-group-addon">{{createCtrl.selected[$index].CalculationUnit}}</span>
+                                                        </div>
+                                                    </td>
+                                                    <!--Check Box Group-->
+                                                    <td class="text-center">
+                                                        <input type="checkbox" ng-model='vm.declaredValue' ng-change="vm.SelectBillingDeclaration(vm.declaredValue)" />
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input type="checkbox" ng-model='vm.merchandises.isBreakable' />
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input type="checkbox" ng-model='vm.isSpecialPrice' ng-change="vm.SelectSpecialPriceOption(vm.isSpecialPrice)" />
+                                                    </td>
+                                                    <!--End check box group-->
+                                                    <td>
+                                                        <input type="text" class="input-sm form-control" ng-init="vm.animation.disabled=true" ng-disabled="vm.animation.disabled" ng-model="item.priceDeclaration" placeholder="Khai giá">
+                                                    </td>
+                                                    <td><input type="text" class="input-sm form-control" ng-init="vm.pod.disabled=true" ng-disabled="vm.pod.disabled" ng-model="item.specialPrizeDeclaration" placeholder="Khai đặc biệt"></td>
+                                                    <td><input type="text" class="input-sm form-control" ng-model="vm.description" placeholder="Ghi Chú"></td>
+                                                    <td>3000000000</td>
+                                                </tr>
+                                            </tbody>
+                                            <!--<tfoot>
+                                                    <tr>
+                                                        <td class="col-md-8 pull-right "><strong>Tổng Cộng: </strong>3000000000</td>
+                                                    </tr>
+                                                    </tfoot>-->
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </ba-wizard-step>
 
-                    <ba-wizard-step title="Hoàn Tất" form="vm.productInfoForm">
+                    <ba-wizard-step title="Hoàn Tất">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -170,34 +258,34 @@
                                         <div class="col-md-12">
                                             <div class="text-center">
                                                 <img NG-src="assets/img/ntl_logo.png" class="pull-left" id="logo"></img>
-                                                <h2>XÁC NHẬN CHO ĐƠN HÀNG SỐ {{order.orderID}}</h2>
+                                                <h2>XÁC NHẬN CHO ĐƠN HÀNG SỐ {{vm.bolInfo.BolId}}</h2>
                                             </div>
                                             <hr>
-                                            <div class="row">
-                                                <div class="col-xs-12 col-md-4 col-lg-4 pull-left">
-                                                    <div class="panel panel-default height">
-                                                        <div class="panel-heading">Thông Tin Khách Hàng</div>
-                                                        <div class="panel-body">
+                                            <div class="row ">
+                                                <div class="col-xs-12 col-md-4 col-lg-4 pull-left ">
+                                                    <div class="panel panel-default height ">
+                                                        <div class="panel-heading ">Thông Tin Khách Hàng</div>
+                                                        <div class="panel-body ">
                                                             <strong>{{order.sender.fullName}}</strong><br>{{order.sender.address}}
                                                             <br>
                                                             <strong>{{order.sender.phone}}</strong><br>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-12 col-md-4 col-lg-4">
-                                                    <div class="panel panel-default height">
-                                                        <div class="panel-heading">Payment Information</div>
-                                                        <div class="panel-body">
+                                                <div class="col-xs-12 col-md-4 col-lg-4 ">
+                                                    <div class="panel panel-default height ">
+                                                        <div class="panel-heading ">Payment Information</div>
+                                                        <div class="panel-body ">
                                                             <strong>Card Name:</strong> Visa<br>
                                                             <strong>Ngày Gửi: </strong>{{order.sentDate}}<br>
                                                             <strong>Ngày Nhận: </strong>{{order.sentDate}}<br>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-12 col-md-4 col-lg-4 pull-right">
-                                                    <div class="panel panel-default height">
-                                                        <div class="panel-heading">Địa Chỉ Giao</div>
-                                                        <div class="panel-body">
+                                                <div class="col-xs-12 col-md-4 col-lg-4 pull-right ">
+                                                    <div class="panel panel-default height ">
+                                                        <div class="panel-heading ">Địa Chỉ Giao</div>
+                                                        <div class="panel-body ">
                                                             <strong>{{order.receiver.fullName}}</strong><br>{{order.receiver.address}}
                                                             <br>
                                                             <strong>{{order.receiver.phone}}</strong><br>
@@ -208,37 +296,37 @@
                                         </div>
                                     </div>
                                     <!--Order Summary - Start -->
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="text-center"><strong>Chi Tiết Đơn Vận</strong></h3>
+                                    <div class="row ">
+                                        <div class="col-md-12 ">
+                                            <div class="panel panel-default ">
+                                                <div class="panel-heading ">
+                                                    <h3 class="text-center "><strong>Chi Tiết Đơn Vận</strong></h3>
                                                 </div>
-                                                <div class="panel-body">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-condensed col-lg-12">
+                                                <div class="panel-body ">
+                                                    <div class="table-responsive ">
+                                                        <table class="table table-condensed col-lg-12 ">
                                                             <thead>
                                                                 <tr>
                                                                     <td><strong>Item Unit</strong></td>
                                                                     <td></td>
-                                                                    <td class="text-center"><strong>Item Quantity</strong></td>
-                                                                    <td class="text-right pull-right"><strong>Thành Tiền</strong></td>
+                                                                    <td class="text-center "><strong>Item Quantity</strong></td>
+                                                                    <td class="text-right pull-right "><strong>Thành Tiền</strong></td>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody ng-repeat="subProduct in order.product" class="align-center">
+                                                            <tbody ng-repeat="subProduct in order.product " class="align-center ">
                                                                 <tr>
                                                                     <td>{{subProduct.unit}}</td>
                                                                     <td></td>
-                                                                    <td class="text-center">{{subProduct.quantity}}</td>
-                                                                    <td class="text-right">$900</td>
+                                                                    <td class="text-center ">{{subProduct.quantity}}</td>
+                                                                    <td class="text-right ">$900</td>
                                                                 </tr>
 
                                                             </tbody>
                                                             <tr>
-                                                                <td class="highrow"></td>
-                                                                <td class="highrow"></td>
-                                                                <td class="highrow text-center"><strong>Tổng Tiền</strong></td>
-                                                                <td class="highrow text-right">$958.00</td>
+                                                                <td class="highrow "></td>
+                                                                <td class="highrow "></td>
+                                                                <td class="highrow text-center "><strong>Tổng Tiền</strong></td>
+                                                                <td class="highrow text-right ">$958.00</td>
                                                             </tr>
                                                         </table>
                                                     </div>
@@ -247,19 +335,19 @@
                                             <!--Order Summary - End -->
 
                                             <!--Sample invoice signature - Start -->
-                                            <div class="row">
-                                                <div class="col-xs-12 col-md-6 col-lg-6 pull-left">
-                                                    <div class="panel panel-default height">
-                                                        <div class="panel-heading text-center"><strong>Chữ Ký Người Nhân Viên</strong></div>
-                                                        <div class="panel-body" style="height: 200px">
+                                            <div class="row ">
+                                                <div class="col-xs-12 col-md-6 col-lg-6 pull-left ">
+                                                    <div class="panel panel-default height ">
+                                                        <div class="panel-heading text-center "><strong>Chữ Ký Người Nhân Viên</strong></div>
+                                                        <div class="panel-body " style="height: 200px ">
 
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-12 col-md-6 col-lg-6 pull-right">
-                                                    <div class=" panel panel-default height">
-                                                        <div class="panel-heading text-center"><strong>Chữ Ký Khách Hàng</strong></div>
-                                                        <div class="panel-body" style="height: 200px">
+                                                <div class="col-xs-12 col-md-6 col-lg-6 pull-right ">
+                                                    <div class=" panel panel-default height ">
+                                                        <div class="panel-heading text-center "><strong>Chữ Ký Khách Hàng</strong></div>
+                                                        <div class="panel-body " style="height: 200px ">
 
                                                         </div>
                                                     </div>

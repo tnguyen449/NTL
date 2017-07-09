@@ -15,7 +15,7 @@
                 url: '/tables',
                 template: '<ui-view  autoscroll="true" autoscroll-body-top></ui-view>',
                 abstract: true,
-                controller: 'TablesPageCtrl',
+                controller: 'wizrdCtrl',
                 title: 'Tables',
                 sidebarMeta: {
                     icon: 'ion-grid',

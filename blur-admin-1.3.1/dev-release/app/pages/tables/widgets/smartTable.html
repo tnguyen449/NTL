@@ -1,86 +1,69 @@
+<div class="add-row-editable-table">
+    <button class="btn btn-primary" ng-click="addItem()">Add row</button>
+</div>
 <div class="horizontal-scroll">
-  <div class="form-group select-page-size-wrap ">
-    <label>Rows on page
-      <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-              ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
-      </select>
-    </label>
-  </div>
-  <table class="table" st-table="smartTableData">
-    <thead>
-    <tr>
-      <th class="table-id">
-          <input type="checkbox" ng-model="createCtrl.selectedAll" ng-click="createCtrl.SelectAll()" />
-      </th>
-      <th class="col-md-2  text-left">Loại Đơn Hàng</th>
-      <th class="col-md-1  text-left">Số Lượng </th>
-      <th class="col-md-2  text-left">Khối Lượng</th>
-      <!--Check box group-->
-      <th class="col-md-0.5 text-center">KG</th>
-      <th class="col-md-0.5 text-center" >Dễ Vỡ</th>
-      <th class="col-md-0.5 text-center">Giá ĐB</th>
-      <!--End check box group-->
-      <th class="col-md-2  text-left">Giá Khai</th>
-      <th class="col-md-2  text-left">Giá Đặc Biệt</th>
-      <th class="col-md-2  text-left">Ghi Chú</th>
-      <th>Thành Tiền</th>
-    </tr>
-    <tr>
-      <!--<th><input st-search="firstName" placeholder="Search First Name" class="input-sm form-control search-input"
-                 type="search"/></th>
-      <th><input st-search="lastName" placeholder="Search Last Name" class="input-sm form-control search-input"
-                 type="search"/></th>
-      <th><input st-search="username" placeholder="Search Username" class="input-sm form-control search-input"
-                 type="search"/></th>
-      <th><input st-search="email" placeholder="Search Email" class="input-sm form-control search-input" type="search"/>
-      </th>
-      <th><input st-search="age" placeholder="Search Age" class="input-sm form-control search-input" type="search"/>
-      </th>-->
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="item in products">
-      <td class="table-id">
-        <input type="checkbox" ng-model="item.selected" />
-      </td>
-      <td>
-        <select ng-model="createCtrl.selected[$index]" ng-options="item.MerchandiseType1  group by item.Description for item  in createCtrl.receiverInfo.Type" name="sendTo " class="form-control">
+    <table class="table" st-table="smartTableData">
+        <thead>
+            <tr>
+                <th class="table-id">
+                    <input type="checkbox" ng-model="createCtrl.selectedAll" ng-click="createCtrl.SelectAll()" />
+                </th>
+                <th class="col-md-2  text-left">Loại Đơn Hàng</th>
+                <th class="col-md-1  text-left">Số Lượng </th>
+                <th class="col-md-2  text-left">Khối Lượng</th>
+                <!--Check box group-->
+                <th class="col-md-0.5 text-center">KG</th>
+                <th class="col-md-0.5 text-center">Dễ Vỡ</th>
+                <th class="col-md-0.5 text-center">Giá ĐB</th>
+                <!--End check box group-->
+                <th class="col-md-2  text-left">Giá Khai</th>
+                <th class="col-md-2  text-left">Giá Đặc Biệt</th>
+                <th class="col-md-2  text-left">Ghi Chú</th>
+                <th>Thành Tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in products">
+                <td class="table-id">
+                    <input type="checkbox" ng-model="item.selected" />
+                </td>
+                <td>
+                    <select ng-model="createCtrl.selected[$index]" class="input-sm form-control" ng-options="item.MerchandiseType1  group by item.Description for item  in createCtrl.receiverInfo.Type" name="sendTo " class="form-control">
               <option>Chọn Loại Hàng</option>
         </select>
-      </td>
-       <td>
-        <input type="number" class="form-control" ng-model="item.total" id="locationName" placeholder="gia">
-      </td>
-      <td>
-        <div class="input-group">
-        <input type="text" class="form-control" ng-model="item.quantity" id="locationName">
-        <span class="input-group-addon">{{createCtrl.selected[$index].CalculationUnit}}</span>
-        </div>
-      </td>
-      <!--Check Box Group-->
-      <td class="text-center">
-        <input type="checkbox" ng-model='createCtrl.declaredValue' ng-change="createCtrl.SelectBillingDeclaration(createCtrl.declaredValue)" ng-init="createCtrl.declaredValue = false" ng-true-value="'true'" ng-false-value="'false'" />
-      </td>
-       <td class="text-center">
-        <input type="checkbox" ng-model='createCtrl.declaredValue' ng-change="createCtrl.SelectBillingDeclaration(createCtrl.declaredValue)" ng-init="createCtrl.declaredValue = false" ng-true-value="'true'" ng-false-value="'false'" />
-      </td>
-       <td class="text-center">
-        <input type="checkbox" ng-model='createCtrl.declaredValue' ng-change="createCtrl.SelectBillingDeclaration(createCtrl.declaredValue)" ng-init="createCtrl.declaredValue = false" ng-true-value="'true'" ng-false-value="'false'" />
-      </td>
-      <!--End check box group-->
-      <td>
-        <input type="text" class="form-control" ng-init="createCtrl.animation.disabled = true" ng-disabled="createCtrl.animation.disabled" ng-model="product.description" id="locationName" placeholder="Khai giá">
-      </td>
-      <td><input type="text" class="form-control" ng-init="createCtrl.animation.disabled = true" ng-disabled="createCtrl.animation.disabled" ng-model="product.description" id="locationName" placeholder="Khai đặc biệt"></td>
-      <td><input type="text" class="form-control" ng-init="createCtrl.animation.disabled = true" ng-disabled="createCtrl.animation.disabled" ng-model="product.description" id="locationName" placeholder="Ghi Chú"></td>
-    </tr>
-    </tbody>
-    <tfoot>
-    <tr>
-      <td colspan="6" class="text-center">
-        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
-      </td>
-    </tr>
-    </tfoot>
-  </table>
+                </td>
+                <td>
+                    <input type="number" class="input-sm form-control" ng-model="item.total" id="locationName" placeholder="gia">
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" class="input-sm form-control" ng-model="item.quantity" id="locationName">
+                        <span class="input-group-addon">{{createCtrl.selected[$index].CalculationUnit}}</span>
+                    </div>
+                </td>
+                <!--Check Box Group-->
+                <td class="text-center">
+                    <input type="checkbox" ng-model='createCtrl.declaredValue' ng-change="createCtrl.SelectBillingDeclaration(createCtrl.declaredValue)" ng-init="createCtrl.declaredValue = false" ng-true-value="'true'" ng-false-value="'false'" />
+                </td>
+                <td class="text-center">
+                    <input type="checkbox" ng-model='createCtrl.declaredValue' ng-change="createCtrl.SelectBillingDeclaration(createCtrl.declaredValue)" ng-init="createCtrl.declaredValue = false" ng-true-value="'true'" ng-false-value="'false'" />
+                </td>
+                <td class="text-center">
+                    <input type="checkbox" ng-model='createCtrl.declaredValue' ng-change="createCtrl.SelectBillingDeclaration(createCtrl.declaredValue)" ng-init="createCtrl.declaredValue = false" ng-true-value="'true'" ng-false-value="'false'" />
+                </td>
+                <!--End check box group-->
+                <td>
+                    <input type="text" class="input-sm form-control" ng-init="createCtrl.animation.disabled = true" ng-disabled="createCtrl.animation.disabled" ng-model="product.description" id="locationName" placeholder="Khai giá">
+                </td>
+                <td><input type="text" class="input-sm form-control" ng-init="createCtrl.animation.disabled = true" ng-disabled="createCtrl.animation.disabled" ng-model="product.description" id="locationName" placeholder="Khai đặc biệt"></td>
+                <td><input type="text" class="input-sm form-control" ng-model="product.description" placeholder="Ghi Chú"></td>
+                <td>3000000000</td>
+            </tr>
+        </tbody>
+        <!--<tfoot>
+            <tr>
+                <td class="col-md-8 pull-right"><strong>Tổng Cộng: </strong>3000000000</td>
+            </tr>
+        </tfoot>-->
+    </table>
 </div>
