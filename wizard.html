@@ -86,7 +86,7 @@
                                                 <div class="col-md-12" >
                                                     <div class="col-md-6"  ng-repeat="deliveryType in vm.deliveryTypeVM">
                                                         <fieldset>
-                                                            <input type="radio" name="optradio" ng-value="deliveryType" ng-model="vm.bolInfoVM.deliveryType.Name"/>{{deliveryType.Name}}
+                                                            <input type="radio" name="optradio" ng-value="deliveryType" ng-model="vm.bolInfoVM.deliveryType"/>{{deliveryType.Name}}
                                                         </fieldset>                                       
                                                     </div>
                                                 </div>
@@ -144,6 +144,9 @@
                         <div class="widgets">
                             <div class="row">
                                 <div class="col-md-12">
+                                    <div class ="text-center">
+                                        <label><h2>Thông tin đơn hàng số {{vm.bolInfoVM.bolFrom.BranchCode}}{{vm.bolInfoVM.bolTo.BranchCode}}{{vm.serverTimeStampVM}}<h2></label>
+                                    </div>
                                     <div class="add-row-editable-table col-md-12">
                                         <div class="col-md-6">
                                             <button class="btn btn-primary" ng-click="vm.addItem()"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Hàng Gửi</button>
@@ -286,7 +289,7 @@
                                         <div class="col-md-12">
                                             <div class="text-center">
                                                 <img NG-src="assets/img/ntl_logo.png" class="pull-left" id="logo"></img>
-                                                <label ng-value="vm.serverTimeStamp"></label>
+                                                <label><h2>Thông tin đơn hàng số {{vm.bolInfoVM.bolFrom.BranchCode}}{{vm.bolInfoVM.bolTo.BranchCode}}{{vm.serverTimeStampVM}}<h2></label>
                                             </div>
                                             <hr>
                                             <div class="row ">
