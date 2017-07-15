@@ -1,0 +1,20 @@
+{
+  "name": "angular-selectizejs",
+  "version": "0.1.7",
+  "main": "./angular-selectize.js",
+  "ignore": [],
+  "dependencies": {
+    "selectize": "^0.12.1"
+  },
+  "homepage": "https://github.com/danielqa/angular-selectizejs",
+  "_release": "0.1.7",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.7",
+    "commit": "4e4dc92bc9db1b801eeac7d678c2d3a23922a2c0"
+  },
+  "_source": "https://github.com/danielqa/angular-selectizejs.git",
+  "_target": "^0.1.7",
+  "_originalSource": "angular-selectizejs",
+  "_direct": true
+}

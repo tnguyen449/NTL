@@ -15,7 +15,7 @@
     <nav>
         <ul class="pager ba-wizard-pager">
             <li class="previous"><button ng-disabled="$baWizardController.isFirstTab()" ng-click="$baWizardController.previousTab()" type="button" class=" btn btn-primary"><span aria-hidden="true">&larr;</span> Quay Lại</button></li>
-            <li class="next"> <button ng-disabled="$baWizardController.isLastTab()" ng-click="$baWizardController.nextTab()" type="button" class="btn btn-primary">Tiếp Theo <span aria-hidden="true">&rarr;</span></button></li>
+            <li class="next"> <button ng-submit="$baWizardController.isLastTab(vm.submitTransaction())" ng-click="$baWizardController.nextTab(vm.getTransactionComponent())" type="button" class="btn btn-primary">Tiếp Theo <span aria-hidden="true">&rarr;</span></button></li>
         </ul>
     </nav>
 </div>

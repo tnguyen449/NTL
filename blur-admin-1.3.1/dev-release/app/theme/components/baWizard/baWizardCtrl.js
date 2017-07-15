@@ -22,6 +22,7 @@
 
     vm.selectTab = function (tabNum) {
       vm.tabs[vm.tabNum].submit();
+
       if (vm.tabs[tabNum].isAvailiable()) {
         vm.tabNum = tabNum;
         vm.tabs.forEach(function (t, tIndex) {
@@ -34,12 +35,17 @@
       return vm.tabNum == 0;
     };
 
-    vm.isLastTab = function () {
+    vm.isLastTab = function (object) {
+      object;
       return vm.tabNum == vm.tabs.length - 1 ;
     };
 
-    vm.nextTab = function () {
+    vm.nextTab = function (object) {
       vm.selectTab(vm.tabNum + 1)
+      if(vm.tabNum===1)
+      {
+          return object;      
+      }  
     };
 
     vm.previousTab = function () {

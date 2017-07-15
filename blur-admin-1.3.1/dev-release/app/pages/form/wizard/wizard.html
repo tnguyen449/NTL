@@ -9,174 +9,215 @@
                         <form>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h2>Người Gửi</h2>
-                                    <div class="form-group has-feedback">
-                                        <label for="exampleUsername1">Họ Tên</label>
-                                        <input type="text" class="form-control" name="username" placeholder="Nhập Họ và Tên Người Gửi" ng-model="vm.customerInfo.senderName">
-                                        <span class="help-block error-block basic-block">Required</span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Số Điện Thoại</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" name="email" placeholder="Nhập Số Điện Thoại Người Gửi" ng-model="vm.customerInfo.senderPhone">
-                                        <span class="help-block error-block basic-block">Proper email required</span>
+                                    <div class="panel panel-default height">
+                                        <div class="panel-heading">
+                                            <h2>Người Gửi</h2>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group has-feedback">
+                                                <label for="exampleUsername1">Họ Tên</label>
+                                                <input type="text" class="form-control" name="username" placeholder="Nhập Họ và Tên Người Gửi" ng-model="vm.customerInfoVM.senderName">
+                                                <span class="help-block error-block basic-block">Required</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Số Điện Thoại</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" name="email" placeholder="Nhập Số Điện Thoại Người Gửi" ng-model="vm.customerInfoVM.senderPhone">
+                                                <span class="help-block error-block basic-block">Proper email required</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label"><span class="require">* </span>Gửi Từ:</label>
+                                                <div class="form-group">
+                                                    <ui-select ng-model="vm.bolInfo.BolTo.selected" class="btn-group bootstrap-select form-control" ng-disabled="false" append-to-body="true" search-enabled="true">
+                                                        <ui-select-match placeholder="Chọn Nơi Gửi">
+                                                            {{$select.selected.Name}}
+                                                        </ui-select-match>
+                                                        <ui-select-choices repeat="branch in vm.branchInfoVM | groupSelectpickerOptions: {Name: $select.search}" group-by="'Description'">
+                                                            <span ng-bind-html="branch.Name | highlight: $select.search"></span>
+                                                        </ui-select-choices>
+                                                    </ui-select>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <h2>Người Nhận</h2>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Họ Tên</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword1" name="password" placeholder="Nhập Họ và Tên Người Nhận" ng-model="vm.customerInfo.receivername">
-                                        <span class="help-block error-block basic-block">Required</span>
+                                    <div class="panel panel-default height">
+                                        <div class="panel-heading">
+                                            <h2>Người Nhận</h2>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Họ Tên</label>
+                                                <input type="text" class="form-control" id="exampleInputPassword1" name="password" placeholder="Nhập Họ và Tên Người Nhận" ng-model="vm.customerInfoVM.receiverName">
+                                                <span class="help-block error-block basic-block">Required</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputConfirmPassword1">Số Điện Thoại</label>
+                                                <input type="text" class="form-control" id="exampleInputConfirmPassword1" name="confirmPassword" placeholder="Nhập Số Điện Thoại Người Nhận" ng-model="vm.customerInfoVM.receiverPhone">
+                                                <span class="help-block error-block basic-block">Passwords should match</span>
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <label class="control-label"><span class="require">* </span>Gửi Đến:</label>
+                                                <div class="form-group">
+                                                    <ui-select ng-model="vm.bolInfo.BolTo.selected" class="btn-group bootstrap-select form-control" ng-disabled="false" append-to-body="true" search-enabled="true">
+                                                        <ui-select-match placeholder="Chọn Nơi Gửi">
+                                                            {{$select.selected.Name}}
+                                                        </ui-select-match>
+                                                        <ui-select-choices repeat="branch in vm.branchInfoVM | groupSelectpickerOptions: {Name: $select.search}" group-by="'Description'">
+                                                            <span ng-bind-html="branch.Name | highlight: $select.search"></span>
+                                                        </ui-select-choices>
+                                                    </ui-select>
+                                                </div>
+
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputConfirmPassword1">Số Điện Thoại</label>
-                                        <input type="text" class="form-control" id="exampleInputConfirmPassword1" name="confirmPassword" placeholder="Nhập Số Điện Thoại Người Nhận" ng-model="vm.customerInfo.receiverPhone">
-                                        <span class="help-block error-block basic-block">Passwords should match</span>
-                                    </div>
+
                                 </div>
                             </div>
                         </form>
                     </ba-wizard-step>
                     <!--End the first wizard-->
 
-                    <!--The second wizard form - Bill of landing Information-->
-                    <ba-wizard-step title="Thông Tin Đơn Hàng">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="  form-group">
-                                        <fieldset>
-                                            <label class="control-label col-md-12">Mã Đơn Hàng:</label>
-                                            <div class="col-md-5">
-                                                <input type="text" class="form-control" ng-value="vm.Id()" ng-model="vm.bolInfo.BolId" id="locationName" readonly>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="  form-group">
-                                        <fieldset>
-                                            <label class="control-label col-md-6"><span class="require">* </span>Gửi Từ:</label>
-                                            <label class="control-label col-md-6"><span class="require">* </span>Gửi Đến:</label>
-                                            <div class="col-md-6">
-                                                <select class="form-control" ng-model="vm.bolInfo.BolFrom" ng-options="branch.Name group by branch.Description for branch in vm.branchInfo">
-                                                    <option>Chọn Nơi Gửi</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <select class="form-control" ng-model="vm.bolInfo.BolTo" ng-options="branch.Name group by branch.Description for branch in vm.branchInfo">
-                                                    <option>Chọn Nơi Gửi</option>
-                                                </select>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </div>
 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <fieldset>
-                                            <label class="control-label col-md-12"><span class="require">* </span>Ngày Gửi:</label>
-                                            <div class="col-md-5">
-                                                <p class="input-group">
-                                                    <input type="text" class="form-control" uib-datepicker-popup={{vm.format}} ng-model="vm.bolInfo.SentDate" ng-value="vm.dateOptions.minDate |  date:'dd/MM/yyyy'" is-open="vm.popUpDate.opened" datepicker-options="vm.dateOptions" close-text="Close" />
-                                                    <span class="input-group-btn">
-			                                        <button class="btn btn-default" ng-click="vm.PickDate()"><i class="glyphicon glyphicon-calendar"></i></button>
-		                                     </span>
-                                                </p>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </div>
 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <fieldset>
-                                            <label class="control-label col-md-3"><span class="require">* </span>Phương Thức Giao Nhận:</label>
-                                            <div class="col-md-6">
-                                                <div class="col-md-12">
-                                                    <div class="col-md-6">
-                                                        <input type="radio" name="optradio" ng-model="vm.bolInfo.DeliveryType" ng-value="1" /> Chuyển Phát Thường
-                                                    </div>
-                                                    <div class="col-md-6  ">
-                                                        <input type="radio" name="optradio" ng-model="vm.bolInfo.DeliveryType" ng-value="2" /> Chuyển Phát Nhanh
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="col-md-6  ">
-                                                        <input type="radio" name="optradio" ng-model="vm.bolInfo.DeliveryType" ng-value="3" /> Chuyển Phát Tận Nơi
-                                                    </div>
-                                                    <div class="col-md-6  ">
-                                                        <input type="radio" name="optradio" ng-model="vm.bolInfo.DeliveryType" ng-value="4" /> Chuyển Phát Tận Nơi Gấp
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <fieldset>
-                                            <label class="control-label col-md-3">Phụ Phí/Bảo Hiểm:</label>
-                                            <div class="col-md-6">
-                                                <div class="col-md-12">
-                                                    <div class="col-md-6">
-                                                        <input type="checkbox" name="optradio" ng-model='vm.guarantee' ng-change="vm.SelectGuarantee(vm.guarantee)" /> Hàng Đảm Bảo
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="form-group" ng-show="vm.showIdInput == true">
-                                        <fieldset>
-                                            <label class="control-label col-md-3">Nhập CMND Người Nhận:</label>
-                                            <div class="col-md-6">
-                                                <div class="col-md-12">
-                                                    <div class="col-md-6">
-                                                        <input type="text" class="input-sm form-control" ng-model="vm.customerInfo.SenderIdNumber" placeholder="Số chứng minh nhân dân" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </div>
-
-                                <!--<div class="col-md-12">
-                                    <div class="form-group">
-                                        <fieldset>
-                                            <div class="col-sm-12" ng-show="vm.showIdInput == true">
-                                                <label class="control-label col-sm-3">Nhập CMND Người Nhận:</label>
-                                                <div class="col-sm-6">
-                                                    <input type="text" ng-model="vm.customerInfo.SenderIdNumber" placeholder="Số chứng minh nhân dân" />
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </div>-->
-                                <fieldset></fieldset>
-                                <fieldset></fieldset>
-                            </div>
-                        </form>
-                    </ba-wizard-step>
-                    <!--End the second wizard form-->
 
                     <!--The third wizard form - Merchandise Information-->
                     <ba-wizard-step title="Thông Tin Hàng Hóa">
                         <div class="widgets">
-                            <div class="row">
-                                <div class="col-md-12">
+                            <div class="panel panel-default panel-default height">
+                                <div class="text-center panel-heading">
+                                    <h2>Thông tin đơn hàng số {{vm.bolInfoVM.bolFrom.BranchCode}}{{vm.bolInfoVM.bolTo.BranchCode}}{{vm.serverTimeStampVM}}
+                                        <h2>
+                                </div>
+                                <div class="panel-body">
                                     <div class="add-row-editable-table col-md-12">
-                                        <div class="col-md-6">
-                                            <button class="btn btn-primary" ng-click="vm.addItem()"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Hàng Gửi</button>
-                                            <button class="btn btn-danger" type="button" ng-click="vm.removeItem()"><span class="glyphicon glyphicon-minus-sign "></span><strong> Xóa Hàng Gửi</strong></button>
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <div>
+                                                    <label class="col-md-4">Ngày Gửi:</label>
+                                                </div>
+                                                <div>
+                                                    <label class="col-md-8">{{vm.bolInfoVM.createdDate | date: 'dd/MM/yyyy'}}</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-4">
+                                                    <label style="padding-top: 5px">Ngày Nhận:</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <p class="input-group">
+                                                        <input type="text" class="form-control" uib-datepicker-popup={{vm.format}} ng-model="vm.bolInfoVM.CreatedDate" ng-value="vm.dateOptions.minDate |  date:'dd/MM/yyyy'" is-open="vm.popUpDate.opened" datepicker-options="vm.dateOptions" close-text="Close"
+                                                        />
+                                                        <span class="input-group-btn">
+			                                                    <button class="btn btn-default" ng-click="vm.pickDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+		                                                    </span>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <!--<div class="col-md-6">
                                             <ul><i class="fa fa-asterisk" style="color:red" aria-hidden="true"></i><strong style="color:red"> Chú Thích</strong>
                                                 <li><strong>KG:</strong> Khai Giá</li>
                                                 <li><strong>Giá ĐB:</strong> Giá Đặc Biệt (Dùng để kích hoạt nhập giá mới cho các loại hàng đặc biệt)</li>
                                             </ul>
+                                        </div>-->
+                                    </div>
+
+                                    <div class="add-row-editable-table col-md-12">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <div class="col-md-4">
+                                                    <label style="padding-top:10px"><strong>Thu Ho:</strong></label>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <input type="text" class="form-control" placeholder="Tien can thu" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="add-row-editable-table col-md-12">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <div class="col-md-3">
+                                                    <label><strong>Phương Thức Giao Nhận:</strong></label>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-3" ng-repeat="deliveryType in vm.deliveryTypeVM" ng-init="vm.bolInfoVM.deliveryType.Name = vm.deliveryTypeVM[0].Name">
+                                                            <fieldset>
+                                                                <input type="radio" name="optradio" ng-value="deliveryType.Name" ng-model="vm.bolInfoVM.deliveryType.Name" /> {{deliveryType.Name}}
+                                                            </fieldset>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--form Giao Nhan Tan Noi-->
+                                    <!--<div class="add-row-editable-table col-md-12" style="height: 60px">
+                                        <div class="col-md-12" ng-show="vm.bolInfoVM.deliveryType.Name == 'Giao nhan tan noi'">
+                                            <div class="col-md-12">
+                                                <div class="col-md-12">
+                                                    <label>Phương Thức {{vm.bolInfoVM.deliveryType.Name}}</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-12">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>-->
+                                    <!--End show form Giao Nhan Hen Gio-->
+                                    <!--Form Dong Gia-->
+                                    <div class="add-row-editable-table col-md-12" style="height: 60px" ng-switch on="vm.bolInfoVM.deliveryType.Name" ng-hide="vm.bolInfoVM.deliveryType.Name =='Nhan tai VP'">
+                                        <div class="col-md-12">
+                                            <div class="col-md-12">
+                                                <div class="col-md-12">
+                                                    <label>Phương Thức {{vm.bolInfoVM.deliveryType.Name}}</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-12">
+                                                    <form class="row form-inline animate-switch" ng-switch-when="Giao nhan tan noi">
+                                                        <div class="form-group col-sm-3 col-xs-6">
+                                                            <input type="text" class="form-control" id="exampleInputName2" placeholder="Nhập Giá">
+                                                        </div>
+                                                        <div class="form-group col-sm-3 col-xs-6">
+                                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="CHọn Thời Gian Nhận">
+                                                        </div>
+                                                    </form>
+                                                    <form class="row form-inline" ng-switch-when="Giao nhan hen gio">
+                                                        <div class="form-group col-sm-3 col-xs-6">
+                                                            <input type="text" class="form-control" id="exampleInputName2" placeholder="Nhập Giá">
+                                                        </div>
+                                                        <div class="form-group col-sm-3 col-xs-6">
+                                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Nhập Địa Chỉ">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--End Form Giao Nhan Hen Gio-->
+
+                                </div>
+                            </div>
+                            <div class="panel panel-default panel-default height">
+                                <div class="panel-heading text-center">
+                                    <h2>Chi Tiết Đơn Vận</h2>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="add-row-editable-table col-md-4 pull-right">
+                                        <div class="col-md-12">
+                                            <button class="btn btn-primary" ng-click="vm.addItem()"><i class="fa fa-plus-circle" aria-hidden="true"></i> Thêm Hàng Gửi</button>
+                                            <button class="btn btn-danger" type="button" ng-click="vm.removeItem()"><span class="glyphicon glyphicon-minus-sign "></span><strong> Xóa Hàng Gửi</strong></button>
                                         </div>
                                     </div>
                                     <div class="horizontal-scroll col-md-12">
@@ -184,65 +225,102 @@
                                             <thead>
                                                 <tr>
                                                     <th class="table-id">
-                                                        <input type="checkbox" ng-model="vm.selectedAll " ng-click="vm.SelectAll() " />
+                                                        <input type="checkbox" ng-model="vm.selectedAll " ng-click="vm.selectAll() " />
                                                     </th>
                                                     <th class="col-md-2 text-left">Loại Đơn Hàng</th>
                                                     <th class="col-md-1 text-left">Số Lượng </th>
-                                                    <th class="col-md-2 text-left">Khối Lượng</th>
+                                                    <th class="col-md-1 text-left">Khối Lượng</th>
                                                     <!--Check box group-->
                                                     <th class="col-md-0.5 text-center">KG</th>
-                                                    <th class="col-md-0.5 text-center">Dễ Vỡ</th>
-                                                    <th class="col-md-0.5 text-center">Giá ĐB</th>
                                                     <!--End check box group-->
                                                     <th class="col-md-2 text-left">Giá Khai</th>
-                                                    <th class="col-md-2 text-left">Giá Đặc Biệt</th>
-                                                    <th class="col-md-2 text-left">Ghi Chú</th>
-                                                    <th>Thành Tiền</th>
+                                                    <th class="col-md-2 text-left">Giá Ước Tính</th>
+                                                    <th class="col-md-3 text-left">Ghi Chú</th>
+                                                    <th class="col-md-2 text-left">Thành Tiền</th>
                                                 </tr>
                                             </thead>
+
                                             <tbody>
-                                                <tr ng-repeat="item in vm.merchandises">
-                                                    <td class="table-id">
+                                                <tr></tr>
+                                                <tr ng-repeat="item in vm.merchandisesVM">
+                                                    <td class="table-id" style="border-top:none">
                                                         <input type="checkbox" ng-model="item.selected" />
                                                     </td>
-                                                    <td>
-                                                        <select ng-model="vm.merchandises.selected[$index]" class="input-sm form-control" ng-options="item.MerchandiseType1 group by item.Description for item in vm.merchandises.Type" name="sendTo" class="form-control">
+                                                    <td style="border-top:none">
+                                                        <select ng-change="vm.calculate(item)" ng-model="item.type" class="input-sm form-control" ng-options="type.MerchandiseType1 group by type.Description for type in vm.merchandiseTypeVM" name="sendTo" class="form-control">
                                                                 <option>Chọn Loại Hàng</option>
                                                         </select>
                                                     </td>
-                                                    <td>
-                                                        <input type="number" class="input-sm form-control" ng-model="item.total" id="locationName">
+                                                    <td style="border-top:none">
+                                                        <input type="number" class="input-sm form-control" ng-model="item.amount">
                                                     </td>
-                                                    <td>
+                                                    <td style="border-top:none">
                                                         <div class="input-group">
-                                                            <input type="text" class="input-sm form-control" ng-model="item.quantity" id="locationName">
-                                                            <span class="input-group-addon">{{createCtrl.selected[$index].CalculationUnit}}</span>
+                                                            <input type="text" class="input-sm form-control" ng-model="item.quantity" ng-change="vm.calculate(item)">
+                                                            <span class="input-group-addon">{{item.type.CalculationUnit}}</span>
                                                         </div>
                                                     </td>
                                                     <!--Check Box Group-->
-                                                    <td class="text-center">
-                                                        <input type="checkbox" ng-model='vm.declaredValue' ng-change="vm.SelectBillingDeclaration(vm.declaredValue)" />
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <input type="checkbox" ng-model='vm.merchandises.isBreakable' />
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <input type="checkbox" ng-model='vm.isSpecialPrice' ng-change="vm.SelectSpecialPriceOption(vm.isSpecialPrice)" />
+                                                    <td class="text-center" style="border-top:none">
+                                                        <input type="checkbox" ng-model='item.isDeclaredValue' ng-change="vm.toggleDeclareValueInput(item)" />
                                                     </td>
                                                     <!--End check box group-->
-                                                    <td>
-                                                        <input type="text" class="input-sm form-control" ng-init="vm.animation.disabled=true" ng-disabled="vm.animation.disabled" ng-model="item.priceDeclaration" placeholder="Khai giá">
+                                                    <td style="border-top:none">
+                                                        <input type="text" class="input-sm form-control" ng-disabled="item.isDeclareDisabled" ng-model="item.declareValue" placeholder="Khai giá">
                                                     </td>
-                                                    <td><input type="text" class="input-sm form-control" ng-init="vm.pod.disabled=true" ng-disabled="vm.pod.disabled" ng-model="item.specialPrizeDeclaration" placeholder="Khai đặc biệt"></td>
-                                                    <td><input type="text" class="input-sm form-control" ng-model="vm.description" placeholder="Ghi Chú"></td>
-                                                    <td>3000000000</td>
+                                                    <td style="border-top:none">
+                                                        <input type="text" class="input-sm form-control" ng-disabled="item.isSpecialDisabled" ng-model="item.specialPrice" placeholder="Khai đặc biệt"></td>
+                                                    <td style="border-top:none">
+                                                        <input type="text" class="input-sm form-control" ng-model="item.description" placeholder="Ghi Chú"></td>
+                                                    <td style="border-top:none">
+                                                        <label><span ng-bind="item.total"></label>
+
+                                                    </td>
                                                 </tr>
                                             </tbody>
-                                            <!--<tfoot>
-                                                    <tr>
-                                                        <td class="col-md-8 pull-right "><strong>Tổng Cộng: </strong>3000000000</td>
-                                                    </tr>
-                                                    </tfoot>-->
+                                            <tfoot>
+                                                <tr>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td class="pull-right" style="border-top:none">
+                                                        <strong>Tổng Cộng: </strong>
+                                                    </td>
+                                                    <td style="border-top:none">{{vm.bolInfoVM.total}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td class="pull-right" style="border-top:none">
+                                                        <strong>Trả trước: </strong>
+                                                    </td>
+                                                    <td style="border-top:none">
+                                                        <input type="text" class="input-sm form-control" ng-change="vm.calculateBolLiabilities()" ng-model="vm.bolInfoVM.prepaid">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td style="border-top:none"></td>
+                                                    <td class="pull-right" style="border-top:none">
+                                                        <strong>Còn  nợ: </strong>
+                                                    </td>
+                                                    <td style="border-top:none">{{vm.bolInfoVM.liabilities}}</td>
+                                                </tr>
+                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>
@@ -257,115 +335,211 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="text-center">
-                                                <img NG-src="assets/img/ntl_logo.png" class="pull-left" id="logo"></img>
-                                                <h2>XÁC NHẬN CHO ĐƠN HÀNG SỐ {{vm.bolInfo.BolId}}</h2>
+                                                <img ng-src="assets/img/ntl_logo.png" class="pull-left" id="logo"></img>
+                                                <h2>Thông tin đơn hàng số {{vm.dateCode}}
+                                                    <h2>
                                             </div>
                                             <hr>
                                             <div class="row ">
                                                 <div class="col-xs-12 col-md-4 col-lg-4 pull-left ">
-                                                    <div class="panel panel-default height ">
-                                                        <div class="panel-heading ">Thông Tin Khách Hàng</div>
+                                                    <div class="panel panel-default panel-default height ">
+                                                        <div class="panel-heading ">
+                                                            <h2>Thông Tin Người gửi</h2>
+                                                        </div>
                                                         <div class="panel-body ">
-                                                            <strong>{{order.sender.fullName}}</strong><br>{{order.sender.address}}
+                                                            <strong>Người Gửi: </strong>{{vm.customerInfoVM.senderName}}
                                                             <br>
-                                                            <strong>{{order.sender.phone}}</strong><br>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-12 col-md-4 col-lg-4 ">
-                                                    <div class="panel panel-default height ">
-                                                        <div class="panel-heading ">Payment Information</div>
-                                                        <div class="panel-body ">
-                                                            <strong>Card Name:</strong> Visa<br>
-                                                            <strong>Ngày Gửi: </strong>{{order.sentDate}}<br>
-                                                            <strong>Ngày Nhận: </strong>{{order.sentDate}}<br>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-12 col-md-4 col-lg-4 pull-right ">
-                                                    <div class="panel panel-default height ">
-                                                        <div class="panel-heading ">Địa Chỉ Giao</div>
-                                                        <div class="panel-body ">
-                                                            <strong>{{order.receiver.fullName}}</strong><br>{{order.receiver.address}}
                                                             <br>
-                                                            <strong>{{order.receiver.phone}}</strong><br>
+                                                            <strong>Số Điện Thoại: </strong>{{vm.customerInfoVM.senderPhone}}
+                                                            <br>
+                                                            <br>
+                                                            <strong>Số CMND( gửi đảm bảo): </strong> {{vm.customerInfoVM.SenderIdNumber}}
+                                                            <br>
+                                                            <br>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel panel-default panel-default height ">
+                                                        <div class="panel-heading">
+                                                            <h2>Thông Tin Người nhận</h2>
+                                                        </div>
+                                                        <div class="panel-body ">
+                                                            <strong>Người Nhận: </strong>{{vm.customerInfoVM.receiverName}} {{vm.customerInfoVM.receiverIdNumber}}
+                                                            <br>
+                                                            <br>
+                                                            <strong>Số Điện Thoại: </strong>{{vm.customerInfoVM.receiverPhone}}
+                                                            <br>
+                                                            <br>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-xs-12 col-md-8 col-lg-8 ">
+                                                    <div class="panel panel-default panel-default height ">
+                                                        <div class="panel-heading ">
+                                                            <h2>Thông tin chung</h2>
+                                                        </div>
+                                                        <div class="panel-body ">
+                                                            <strong>Ngày Gửi: </strong>{{vm.bolInfoVM.createdDate | date:'dd/MM/yyyy'}}
+                                                            <br>
+                                                            <br>
+                                                            <strong>Giờ Gửi : </strong>{{vm.bolInfoVM.createdDate | date:'HH:mm:ss'}}
+                                                            <br>
+                                                            <br>
+                                                            <strong>Phương thức gửi: </strong>{{vm.bolInfoVM.deliveryType.Name}}
+                                                            <br>
+                                                            <br>
+                                                            <strong>Phụ phí/bảo hiểm: </strong>{{vm.bolInfoVM.isGuarantee ? 'Có':'Không' }}
+                                                            <br>
+                                                            <br>
+                                                            <strong>Nơi Gửi:</strong>{{vm.bolInfoVM.bolFrom.Name}}
+                                                            <br>
+                                                            <br>
+                                                            <strong>Địa chỉ :</strong>{{vm.bolInfoVM.bolFrom.Address}}
+                                                            <br>
+                                                            <br>
+                                                            <strong>Nơi Nhận:</strong>{{vm.bolInfoVM.bolTo.Name}}
+                                                            <br>
+                                                            <br>
+                                                            <strong>Địa chỉ :</strong>{{vm.bolInfoVM.bolTo.Address}}
+                                                            <br>
+                                                            <br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
                                     <!--Order Summary - Start -->
                                     <div class="row ">
                                         <div class="col-md-12 ">
-                                            <div class="panel panel-default ">
+                                            <div class="panel panel-default panel-default ">
                                                 <div class="panel-heading ">
-                                                    <h3 class="text-center "><strong>Chi Tiết Đơn Vận</strong></h3>
+                                                    <h2 class="text-center">Chi Tiết Đơn Vận</h2>
                                                 </div>
                                                 <div class="panel-body ">
-                                                    <div class="table-responsive ">
-                                                        <table class="table table-condensed col-lg-12 ">
-                                                            <thead>
-                                                                <tr>
-                                                                    <td><strong>Item Unit</strong></td>
-                                                                    <td></td>
-                                                                    <td class="text-center "><strong>Item Quantity</strong></td>
-                                                                    <td class="text-right pull-right "><strong>Thành Tiền</strong></td>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody ng-repeat="subProduct in order.product " class="align-center ">
-                                                                <tr>
-                                                                    <td>{{subProduct.unit}}</td>
-                                                                    <td></td>
-                                                                    <td class="text-center ">{{subProduct.quantity}}</td>
-                                                                    <td class="text-right ">$900</td>
-                                                                </tr>
-
-                                                            </tbody>
+                                                    <table class="table" st-table="smartTableData">
+                                                        <thead>
                                                             <tr>
-                                                                <td class="highrow "></td>
-                                                                <td class="highrow "></td>
-                                                                <td class="highrow text-center "><strong>Tổng Tiền</strong></td>
-                                                                <td class="highrow text-right ">$958.00</td>
+                                                                <th class="col-md-1 text-left">Loại Đơn Hàng</th>
+                                                                <th class="col-md-1 text-left">Số Lượng </th>
+                                                                <th class="col-md-1 text-left">Khối Lượng</th>
+                                                                <!--Check box group-->
+                                                                <th class="col-md-1 text-center">KG</th>
+                                                                <!--End check box group-->
+                                                                <th class="col-md-1 text-center">Giá Khai</th>
+                                                                <th class="col-md-1 text-center">Giá Đặc Biệt</th>
+                                                                <th class="col-md-1 text-center">Ghi Chú</th>
+                                                                <th class="col-md-1 text-center">Thành Tiền</th>
                                                             </tr>
-                                                        </table>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="item in vm.merchandisesVM">
+                                                                <td>
+                                                                    <label>{{item.type.MerchandiseType1}}</label>
+                                                                </td>
+                                                                <td>
+                                                                    <label>{{item.amount}}</label>
+                                                                </td>
+                                                                <td>
+                                                                    <label>{{item.quantity}}  {{item.type.CalculationUnit}}</label>
+                                                                </td>
+                                                                <!--Check Box Group-->
+                                                                <td class="text-center">
+                                                                    <input type="checkbox" ng-model='item.isDeclaredValue' disabled />
+                                                                </td>
+                                                                <!--End check box group-->
+                                                                <td class="text-center">
+                                                                    <label>{{item.declareValue}}</label>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <label>{{item.specialPrice}}</label>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <label>{{item.description}}</label>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <label>{{item.total}}</label>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td class="text-right">
+                                                                    <strong>Tổng Cộng: </strong>
+                                                                </td>
+                                                                <td class="text-center"><strong>{{vm.bolInfoVM.total}}</strong></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-top:none"></td>
+                                                                <td style="border-top:none"></td>
+                                                                <td style="border-top:none"></td>
+                                                                <td style="border-top:none"></td>
+                                                                <td style="border-top:none"></td>
+                                                                <td style="border-top:none"></td>
+
+                                                                <td class="text-right" style="border-top:none">
+                                                                    <strong>Trả trước: </strong>
+                                                                </td>
+                                                                <td style="border-top:none" class="text-center"><strong>{{vm.bolInfoVM.prepaid}}</strong></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="border-top:none"></td>
+                                                                <td style="border-top:none"></td>
+                                                                <td style="border-top:none"></td>
+                                                                <td style="border-top:none"></td>
+                                                                <td style="border-top:none"></td>
+                                                                <td style="border-top:none"></td>
+
+                                                                <td class="text-right" style="border-top:none">
+                                                                    <strong>Còn  nợ: </strong>
+                                                                </td>
+                                                                <td style="border-top:none" class="text-center"><strong>{{vm.bolInfoVM.liabilities}}</strong></td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Order Summary - End -->
+
+                                        <!--Sample invoice signature - Start -->
+                                        <div class="row ">
+                                            <div class="col-xs-12 col-md-6 col-lg-6 pull-left ">
+                                                <div class="panel panel-default panel-default height ">
+                                                    <div class="panel-heading text-center "><strong>Chữ Ký Người Nhân Viên</strong></div>
+                                                    <div class="panel-body " style="height: 200px ">
+
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--Order Summary - End -->
+                                            <div class="col-xs-12 col-md-6 col-lg-6 pull-right ">
+                                                <div class=" panel panel-default panel-default height ">
+                                                    <div class="panel-heading text-center "><strong>Chữ Ký Khách Hàng</strong></div>
+                                                    <div class="panel-body " style="height: 200px ">
 
-                                            <!--Sample invoice signature - Start -->
-                                            <div class="row ">
-                                                <div class="col-xs-12 col-md-6 col-lg-6 pull-left ">
-                                                    <div class="panel panel-default height ">
-                                                        <div class="panel-heading text-center "><strong>Chữ Ký Người Nhân Viên</strong></div>
-                                                        <div class="panel-body " style="height: 200px ">
-
-                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-12 col-md-6 col-lg-6 pull-right ">
-                                                    <div class=" panel panel-default height ">
-                                                        <div class="panel-heading text-center "><strong>Chữ Ký Khách Hàng</strong></div>
-                                                        <div class="panel-body " style="height: 200px ">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--Sample invoice signature - End -->
                                             </div>
+                                            <!--Sample invoice signature - End -->
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Simple Invoice - END -->
                             </div>
+                            <!-- Simple Invoice - END -->
                         </div>
             </div>
-            </ba-wizard-step>
-
-            </ba-wizard>
         </div>
+        </ba-wizard-step>
+
+        </ba-wizard>
     </div>
+</div>
 </div>
 
 </div>
