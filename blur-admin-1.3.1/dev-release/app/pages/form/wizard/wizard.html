@@ -452,11 +452,6 @@
                                                                         <th class="col-md-1 text-left ">Loại Đơn Hàng</th>
                                                                         <th class="col-md-1 text-left ">Số Lượng </th>
                                                                         <th class="col-md-1 text-left ">Khối Lượng</th>
-                                                                        <!--Check box group-->
-                                                                        <th class="col-md-1 text-center ">KG</th>
-                                                                        <!--End check box group-->
-                                                                        <th class="col-md-1 text-center ">Giá Khai</th>
-                                                                        <th class="col-md-1 text-center ">Giá Đặc Biệt</th>
                                                                         <th class="col-md-1 text-center ">Ghi Chú</th>
                                                                         <th class="col-md-1 text-center ">Thành Tiền</th>
                                                                     </tr>
@@ -472,16 +467,6 @@
                                                                         <td>
                                                                             <label>{{item.quantity}}  {{item.type.CalculationUnit}}</label>
                                                                         </td>
-                                                                        <!--Check Box Group-->
-                                                                        <td class="text-center ">
-                                                                            <input type="checkbox " ng-model='item.isDeclaredValue' disabled />
-                                                                        </td>
-                                                                        <!--End check box group-->
-                                                                        <td class="text-center ">
-                                                                            <label>{{item.declareValue}}</label>
-                                                                        </td>
-                                                                        <td class="text-center ">
-                                                                            <label>{{item.specialPrice}}</label>
                                                                         </td>
                                                                         <td class="text-center ">
                                                                             <label>{{item.description}}</label>
@@ -496,18 +481,12 @@
                                                                         <td></td>
                                                                         <td></td>
                                                                         <td></td>
-                                                                        <td></td>
-                                                                        <td></td>
-                                                                        <td></td>
                                                                         <td class="text-right ">
                                                                             <strong>Tổng Cộng: </strong>
                                                                         </td>
                                                                         <td class="text-center "><strong>{{vm.bolInfoVM.total}}</strong></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td style="border-top:none "></td>
-                                                                        <td style="border-top:none "></td>
-                                                                        <td style="border-top:none "></td>
                                                                         <td style="border-top:none "></td>
                                                                         <td style="border-top:none "></td>
                                                                         <td style="border-top:none "></td>
@@ -518,9 +497,6 @@
                                                                         <td style="border-top:none " class="text-center "><strong>{{vm.bolInfoVM.prepaid}}</strong></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td style="border-top:none "></td>
-                                                                        <td style="border-top:none "></td>
-                                                                        <td style="border-top:none "></td>
                                                                         <td style="border-top:none "></td>
                                                                         <td style="border-top:none "></td>
                                                                         <td style="border-top:none "></td>
