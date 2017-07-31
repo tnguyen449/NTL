@@ -15,7 +15,6 @@
             },
             templateUrl: 'app/theme/components/baWizard/baWizardStep.html',
             link: function($scope, $element, $attrs, wizard) {
-
                 $scope.selected = true;
 
                 var tab = {

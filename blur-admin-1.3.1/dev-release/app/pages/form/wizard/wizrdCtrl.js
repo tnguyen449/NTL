@@ -6,37 +6,47 @@
     /** @ngInject */
     function WizardCtrl($scope, $http) {
         var vm = this;
+        //time picker setup
+        vm.mytime = new Date(); //this variable is declared for storing a time in Giao Nhận Hẹn Giờ
+        vm.ismeridian = true;
         //view model from API init
         vm.transactionVM = {};
         vm.customerInfoVM = {};
         vm.branchInfoVM = [{
-                Name: 'anh',
-                Description: 'des'
+                Name: 'Quận 1',
+                Description: 'Sài Gòn'
             },
             {
-                Name: 'anh h',
-                Description: 'des'
+                Name: 'Quận 10',
+                Description: 'Sài Gòn'
             }, {
-                Name: 'cdg',
-                Description: 'des1'
+                Name: 'Quận Tân Bình',
+                Description: 'Sài Gòn'
             },
             {
-                Name: 'dq',
-                Description: 'des1'
+                Name: 'Vĩnh Hy',
+                Description: 'Nha Trang'
+            },
+            {
+                Name: 'Cam Ranh',
+                Description: 'Khánh Hòa'
+            },
+            {
+                Name: 'Thành phố Cam Ranh',
+                Description: 'Khánh Hòa'
             }
         ];
         vm.deliveryTypeVM = [{
-                Name: 'Nhan tai VP',
-                Checked: true
+                Name: 'Nhận Tại Văn Phòng'
             },
             {
-                Name: 'Giao nhan tan noi'
+                Name: 'Giao Nhận Tận Nơi'
             },
             {
-                Name: 'Dong gia'
+                Name: 'Đồng Giá'
             },
             {
-                Name: 'Giao nhan hen gio'
+                Name: 'Giao Nhận Hẹn Giờ'
             }
         ];
         vm.merchandiseTypeVM = {};
@@ -141,7 +151,7 @@
             var newProductList = [];
             vm.selectedAll = false;
             angular.forEach(vm.merchandisesVM, function(product) {
-                if (product.selected) {
+                if (!product.selected) {
                     newProductList.push(product);
                 };
             });
@@ -227,14 +237,6 @@
             console.log(item);
         };
         //End
-        vm.checkedDefault = function(value) {
-            if (value == vm.deliveryTypeVM[0].Name) {
-                console.log(value, (value == vm.deliveryTypeVM[0].Name));
-                return true;
-            }
-            console.log(value, (value == vm.deliveryTypeVM[0].Name));
-            return false;
-        }
     }
 
 })();
