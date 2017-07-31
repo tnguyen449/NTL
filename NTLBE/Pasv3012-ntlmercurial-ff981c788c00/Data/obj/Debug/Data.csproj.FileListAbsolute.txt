@@ -1,0 +1,9 @@
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Data\bin\Debug\Data.dll.config
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Data\bin\Debug\Data.dll
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Data\bin\Debug\Data.pdb
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Data\bin\Debug\EntityFramework.dll
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Data\bin\Debug\EntityFramework.xml
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Data\obj\Debug\Data.dll
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Data\obj\Debug\Data.pdb

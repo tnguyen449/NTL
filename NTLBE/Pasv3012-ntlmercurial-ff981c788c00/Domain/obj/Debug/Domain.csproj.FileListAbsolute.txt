@@ -1,0 +1,13 @@
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Domain\bin\Debug\Domain.dll
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Domain\bin\Debug\Domain.pdb
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Domain\bin\Debug\Core.dll
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Domain\bin\Debug\Data.dll
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Domain\bin\Debug\SimpleInjector.dll
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Domain\bin\Debug\EntityFramework.dll
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Domain\bin\Debug\Core.pdb
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Domain\bin\Debug\Data.pdb
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Domain\bin\Debug\SimpleInjector.xml
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Domain\bin\Debug\EntityFramework.xml
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Domain\obj\Debug\Domain.dll
+C:\Users\ntt\Desktop\Pasv3012-ntlmercurial-ff981c788c00\Domain\obj\Debug\Domain.pdb

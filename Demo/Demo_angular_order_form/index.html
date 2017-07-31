@@ -16,13 +16,13 @@
 </head>
 
 <body ng-app="app">
-    <div class="container-fluid" ng-controller="MainController as mainCtrl">
-        <div>
-            <button type="button" class="btn btn-md btn-primary" ng-click="mainCtrl.CreateOrder()"><span class="glyphicon glyphicon-plus"></span><strong> TẠO ĐƠN VẬN</strong></button>
-        </div>
+    <div class="container-fluid" ng-controller="TestController as mainCtrl">
         <!--<div>
-            <button type="button" class="btn btn-md btn-primary" ng-click="mainCtrl.TestData()"><span class="glyphicon glyphicon-plus"></span><strong> TẠO ĐƠN VẬN</strong></button>
+            <button type="button" class="btn btn-md btn-primary" ng-click="mainCtrl.CreateOrder()"><span class="glyphicon glyphicon-plus"></span><strong> TẠO ĐƠN VẬN</strong></button>
         </div>-->
+        <div>
+            <button type="button" class="btn btn-md btn-primary" ng-click="mainCtrl.test(mainCtrl.something)"><span class="glyphicon glyphicon-plus"></span><strong> TẠO ĐƠN VẬN</strong></button>
+        </div>
     </div>
 </body>
 

@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NgocTrangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BillOfLanding">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BolId" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="BolFrom" Type="int" />
+    <Property Name="BolTo" Type="int" />
+    <Property Name="Sender" Type="int" />
+    <Property Name="Receiver" Type="int" />
+    <Property Name="DeliveryType" Type="int" />
+    <Property Name="Assurance" Type="bit" />
+    <Property Name="Discount" Type="int" />
+    <Property Name="Total" Type="money" />
+    <Property Name="StatusId" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime2" Precision="7" />
+    <Property Name="Barcode" Type="nvarchar(max)" />
+    <Property Name="Premium" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Type" Type="int" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="BranchCode" Type="nchar" MaxLength="10" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CustomerPhone" Type="nvarchar" MaxLength="20" />
+    <Property Name="CustomerIdNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="CustomerType" Type="int" />
+    <Property Name="CreatedDate" Type="datetime2" Precision="7" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DeliveryType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Value" Type="int" />
+    <Property Name="CreatedDate" Type="datetime2" Precision="7" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Merchandise">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MerchandiseId" Type="nvarchar" MaxLength="50" />
+    <Property Name="MerchandiseTypeId" Type="int" />
+    <Property Name="MerchandiseQuantity" Type="int" />
+    <Property Name="MerchandiseUnit" Type="int" />
+    <Property Name="StatusId" Type="int" />
+    <Property Name="IsDeclareValue" Type="bit" />
+    <Property Name="DeclareValue" Type="nvarchar" MaxLength="50" />
+    <Property Name="EstimatedValue" Type="money" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="SubTotal" Type="money" />
+    <Property Name="CreatedDate" Type="datetime2" Precision="7" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MerchandiseType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="MerchandiseType" Type="nvarchar" MaxLength="50" />
+    <Property Name="Value" Type="money" />
+    <Property Name="CalculationUnit" Type="nchar" MaxLength="10" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NgocTrang.dbo.BillView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="BillView">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Create date" Type="datetime2" Precision="7" />
+    <Property Name="From" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sender" Type="nvarchar" MaxLength="100" />
+    <Property Name="To" Type="nvarchar" MaxLength="50" />
+    <Property Name="Receiver" Type="nvarchar" MaxLength="100" />
+    <Property Name="StatusId" Type="int" />
+    <Property Name="Total" Type="money" />
+  </EntityType>
+  <EntityContainer Name="NgocTrangModelStoreContainer">
+    <EntitySet Name="BillOfLanding" EntityType="Self.BillOfLanding" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeliveryType" EntityType="Self.DeliveryType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Merchandise" EntityType="Self.Merchandise" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MerchandiseType" EntityType="Self.MerchandiseType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BillView" EntityType="Self.BillView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [BillView].[Id] AS [Id], 
+    [BillView].[Create date] AS [Create date], 
+    [BillView].[From] AS [From], 
+    [BillView].[Sender] AS [Sender], 
+    [BillView].[To] AS [To], 
+    [BillView].[Receiver] AS [Receiver], 
+    [BillView].[StatusId] AS [StatusId], 
+    [BillView].[Total] AS [Total]
+    FROM [dbo].[BillView] AS [BillView]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
